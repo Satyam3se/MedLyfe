@@ -1,0 +1,191 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Video Consultation | MedLyfe{% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/virtual1.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="call-container">
+    <div class="video-grid">
+        <div class="video-player" id="remote-video">
+            <video id="remoteVideo" autoplay playsinline></video>
+            <p>Remote Participant</p>
+        </div>
+        <div class="video-player" id="local-video">
+            <video id="localVideo" autoplay muted playsinline></video>
+            <p>Your Camera</p>
+        </div>
+    </div>
+
+    <div class="call-controls">
+        <button id="mic-toggle" class="control-btn"><i class="fas fa-microphone"></i></button>
+        <button id="video-toggle" class="control-btn"><i class="fas fa-video"></i></button>
+        <button id="hangUpBtn" class="control-btn hangup"><i class="fas fa-phone-slash"></i></button>
+    </div>
+</div>
+
+<script>
+    const localVideo = document.getElementById('localVideo');
+    const remoteVideo = document.getElementById('remoteVideo');
+    const micToggle = document.getElementById('mic-toggle');
+    const videoToggle = document.getElementById('video-toggle');
+    const hangUpBtn = document.getElementById('hangUpBtn');
+
+    const roomId = "{{ room_id }}";
+    const signalingUrl = `/signaling/${roomId}/`;
+
+    let localStream;
+    let peerConnection;
+    let isCaller = false;
+    let isMicOn = true;
+    let isVideoOn = true;
+
+    const configuration = { 'iceServers': [{ 'urls': 'stun:stun.l.google.com:19302' }] };
+
+    // Helper to get CSRF token
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+    const csrftoken = getCookie('csrftoken');
+
+    // Function to send signaling messages
+    async function sendSignal(message) {
+        await fetch(signalingUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrftoken
+            },
+            body: JSON.stringify(message)
+        });
+    }
+
+    // Function to handle incoming signaling messages
+    async function handleSignalingData(data) {
+        if (data.offer) {
+            if (!peerConnection) {
+                setupPeerConnection();
+            }
+            await peerConnection.setRemoteDescription(new RTCSessionDescription(data.offer));
+            const answer = await peerConnection.createAnswer();
+            await peerConnection.setLocalDescription(answer);
+            sendSignal({ 'answer': answer });
+        } else if (data.answer) {
+            await peerConnection.setRemoteDescription(new RTCSessionDescription(data.answer));
+        } else if (data.iceCandidate) {
+            try {
+                await peerConnection.addIceCandidate(new RTCIceCandidate(data.iceCandidate));
+            } catch (e) {
+                console.error('Error adding received ice candidate', e);
+            }
+        } else if (data.hangup) {
+            closeConnection();
+        }
+    }
+
+    // Poll for messages every 2 seconds
+    setInterval(async () => {
+        const response = await fetch(signalingUrl);
+        const messages = await response.json();
+        for (const message of messages) {
+            handleSignalingData(message);
+        }
+    }, 2000);
+
+    // Setup Peer Connection
+    function setupPeerConnection() {
+        peerConnection = new RTCPeerConnection(configuration);
+        peerConnection.addEventListener('icecandidate', handleIceCandidate);
+        peerConnection.addEventListener('track', handleTrack);
+        localStream.getTracks().forEach(track => peerConnection.addTrack(track, localStream));
+    }
+
+    function handleIceCandidate(event) {
+        if (event.candidate) {
+            sendSignal({ 'iceCandidate': event.candidate });
+        }
+    }
+
+    function handleTrack(event) {
+        console.log('Remote track received.');
+        remoteVideo.srcObject = event.streams[0];
+        remoteVideo.parentElement.querySelector('p').style.display = 'none'; // Hide placeholder
+    }
+
+    // Start Call
+    async function startCall() {
+        try {
+            localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+            localVideo.srcObject = localStream;
+            localVideo.parentElement.querySelector('p').style.display = 'none'; // Hide placeholder
+
+            setupPeerConnection();
+            
+            // For simplicity, assume the first person to join creates the offer
+            // In a real app, signaling server would manage this
+            const offer = await peerConnection.createOffer();
+            await peerConnection.setLocalDescription(offer);
+            sendSignal({ 'offer': offer });
+
+        } catch (err) {
+            console.error('Error starting call: ', err);
+            alert('Could not start call. Please ensure camera and microphone access are granted.');
+            closeConnection();
+        }
+    }
+
+    // Hang Up Call
+    function closeConnection() {
+        sendSignal({ 'hangup': true }); // Notify other participant
+        if (peerConnection) {
+            peerConnection.close();
+            peerConnection = null;
+        }
+        if (localStream) {
+            localStream.getTracks().forEach(track => track.stop());
+            localStream = null;
+        }
+        localVideo.srcObject = null;
+        remoteVideo.srcObject = null;
+        localVideo.parentElement.querySelector('p').style.display = 'block';
+        remoteVideo.parentElement.querySelector('p').style.display = 'block';
+        console.log('Call hung up.');
+    }
+
+    hangUpBtn.addEventListener('click', closeConnection);
+
+    // Toggle microphone
+    micToggle.addEventListener('click', () => {
+        isMicOn = !isMicOn;
+        localStream.getAudioTracks().forEach(track => track.enabled = isMicOn);
+        micToggle.querySelector('i').classList.toggle('fa-microphone-slash', !isMicOn);
+        micToggle.querySelector('i').classList.toggle('fa-microphone', isMicOn);
+    });
+
+    // Toggle video
+    videoToggle.addEventListener('click', () => {
+        isVideoOn = !isVideoOn;
+        localStream.getVideoTracks().forEach(track => track.enabled = isVideoOn);
+        videoToggle.querySelector('i').classList.toggle('fa-video-slash', !isVideoOn);
+        videoToggle.querySelector('i').classList.toggle('fa-video', isVideoOn);
+    });
+
+    // Start call automatically when page loads
+    window.addEventListener('load', startCall);
+    window.addEventListener('beforeunload', closeConnection);
+</script>
+{% endblock %}

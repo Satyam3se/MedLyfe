@@ -1,0 +1,214 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+.symptom-checker-container {
+    --bg-color: #eef2f7;
+    --primary-color: #6d5dfc;
+    --secondary-color: #ff6b6b;
+    --text-color: #333;
+    --light-grey: #dce1e8;
+    --white: #fff;
+    --shadow-light: #c8d0e7;
+    --shadow-dark: #FFFFFF;
+    --font-family: 'Montserrat', sans-serif;
+
+    font-family: var(--font-family);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    max-width: 850px;
+    margin: 3rem auto;
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: 
+        -10px -10px 20px var(--shadow-dark),
+        10px 10px 20px var(--shadow-light);
+}
+
+.symptom-checker-container .symptom-header h1 {
+    text-align: center;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 2.2rem;
+}
+
+.symptom-checker-container .symptom-header p {
+    text-align: center;
+    color: #555;
+    margin-bottom: 2.5rem;
+}
+
+.symptom-checker-container .disclaimer {
+    background: linear-gradient(145deg, #fddddd, #fbeeee);
+    border-left: 5px solid var(--secondary-color);
+    padding: 1.5rem;
+    margin-bottom: 2.5rem;
+    border-radius: 10px;
+    font-size: 0.95rem;
+}
+
+.symptom-checker-container .symptom-selection-area h3 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #444;
+    font-weight: 600;
+}
+
+.symptom-checker-container .search-bar-wrapper {
+    position: relative;
+    margin-bottom: 2.5rem;
+}
+
+.symptom-checker-container #symptomSearch {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    border: none;
+    border-radius: 15px;
+    font-size: 1rem;
+    background-color: var(--bg-color);
+    box-shadow: 
+        inset -5px -5px 10px var(--shadow-dark),
+        inset 5px 5px 10px var(--shadow-light);
+    transition: all 0.3s ease;
+    color: var(--text-color);
+}
+
+.symptom-checker-container #symptomSearch:focus {
+    outline: none;
+    box-shadow: 
+        inset -3px -3px 7px var(--shadow-dark),
+        inset 3px 3px 7px var(--shadow-light),
+        0 0 0 2px var(--primary-color);
+}
+
+.symptom-checker-container .search-icon {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+}
+
+.symptom-checker-container .symptoms-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+
+.symptom-checker-container .symptom-tag {
+    display: flex;
+}
+
+.symptom-checker-container .symptom-tag input[type="checkbox"] {
+    display: none;
+}
+
+.symptom-checker-container .symptom-tag label {
+    padding: 12px 22px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease-in-out;
+    background-color: var(--bg-color);
+    box-shadow: 
+        -5px -5px 10px var(--shadow-dark),
+        5px 5px 10px var(--shadow-light);
+}
+
+.symptom-checker-container .symptom-tag label:hover {
+    transform: translateY(-2px);
+}
+
+.symptom-checker-container .symptom-tag input[type="checkbox"]:checked + label {
+    background-color: var(--primary-color);
+    color: var(--white);
+    box-shadow: 
+        -2px -2px 5px var(--shadow-dark),
+        2px 2px 5px var(--shadow-light),
+        inset 4px 4px 8px #5a4edb, 
+        inset -4px -4px 8px #7f6cfd;
+    transform: scale(0.98);
+}
+
+.symptom-checker-container .submit-symptoms {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.symptom-checker-container .submit-btn {
+    padding: 1rem 2.5rem;
+    background: var(--secondary-color);
+    color: var(--white);
+    border: none;
+    border-radius: 15px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 
+        -5px -5px 10px var(--shadow-dark),
+        5px 5px 10px var(--shadow-light);
+}
+
+.symptom-checker-container .submit-btn:hover {
+    background: #ff4d4d;
+    transform: translateY(-3px);
+}
+
+.symptom-checker-container .submit-btn:active {
+    transform: scale(0.97);
+     box-shadow: 
+        inset -3px -3px 7px #d45a5a,
+        inset 3px 3px 7px #ff7c7c;
+}
+
+.symptom-checker-container .results-section {
+    margin-top: 4rem;
+    border-top: 2px solid var(--light-grey);
+    padding-top: 2rem;
+}
+
+.symptom-checker-container .results-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--primary-color);
+    font-size: 1.8rem;
+}
+
+.symptom-checker-container .disease-card {
+    background-color: var(--bg-color);
+    border-radius: 15px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 
+        -8px -8px 15px var(--shadow-dark),
+        8px 8px 15px var(--shadow-light);
+}
+
+.symptom-checker-container .disease-card-header h4 {
+    color: var(--secondary-color);
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+.symptom-checker-container .match-badge {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+
+.symptom-checker-container .precautions {
+    margin-top: 1.5rem;
+    padding: 1.5rem;
+    background: #e6f0ff;
+    border-left: 5px solid var(--primary-color);
+    border-radius: 10px;
+}
+
+.symptom-checker-container .precautions h5 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}

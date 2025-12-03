@@ -1,0 +1,646 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Health Tracker | MedLyfe{% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/tracker.css' %}" />
+{% endblock %}
+
+{% block content %}
+<section class="tracker-section">
+    <div class="container">
+        <a href="{% url 'export_health_data_csv' %}" class="btn btn-info mb-4">Export All Data (CSV)</a>
+
+        <h2 class="section-title">Your Health Tracker</h2>
+        <p class="section-description">Keep track of your medication adherence and doctor's advice.</p>
+
+        <!-- BMI and Height Section -->
+        <div class="data-section">
+            <h3 class="section-subtitle">Body Mass Index (BMI)</h3>
+            {% if user_height %}
+                <p>Your current height: <strong>{{ user_height }} cm</strong></p>
+            {% else %}
+                <p>Please enter your height to calculate BMI.</p>
+            {% endif %}
+
+            {% if bmi %}
+                <p>Your current BMI: <strong>{{ bmi }}</strong></p>
+                <p>
+                    {% if bmi < 18.5 %}
+                        (Underweight)
+                    {% elif bmi >= 18.5 and bmi < 24.9 %}
+                        (Normal weight)
+                    {% elif bmi >= 25 and bmi < 29.9 %}
+                        (Overweight)
+                    {% else %}
+                        (Obese)
+                    {% endif %}
+                </p>
+            {% else %}
+                <p>BMI will be calculated once height and weight data are available.</p>
+            {% endif %}
+
+            <form method="post" action="{% url 'update_height' %}" class="mt-3">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="height_cm">Update Your Height (cm):</label>
+                    <input type="number" step="0.1" class="form-control" id="height_cm" name="height_cm" value="{{ user_height|default_if_none:'' }}" required>
+                </div>
+                <button type="submit" class="btn btn-primary mt-3">Update Height</button>
+            </form>
+        </div>
+
+        {% if prescriptions_data %}
+            {% for prescription_data in prescriptions_data %}
+                <div class="prescription-card">
+                    <div class="prescription-header">
+                        <h3>Prescription from Dr. {{ prescription_data.prescription_obj.doctor.username }}</h3>
+                        <p class="prescription-date">Prescribed on: {{ prescription_data.prescription_obj.date_prescribed|date:"M d, Y" }}</p>
+                    </div>
+                    <div class="prescription-body">
+                        {% if prescription_data.prescription_obj.advice %}
+                            <p class="doctor-advice"><strong>Doctor's Advice:</strong> {{ prescription_data.prescription_obj.advice }}</p>
+                        {% endif %}
+
+                        {% for medicine_data in prescription_data.medicines %}
+                            <div class="medicine-entry">
+                                <h4>{{ medicine_data.medicine_obj.name }}</h4>
+                                <p><strong>Dosage:</strong> {{ medicine_data.medicine_obj.dosage }}</p>
+                                <p><strong>Duration:</strong> {{ medicine_data.medicine_obj.duration_weeks }} {{ medicine_data.medicine_obj.duration_weeks|pluralize:"week,weeks" }}</p>
+
+                                <div class="dosage-log">
+                                    <div class="log-header">
+                                        <span>Date</span>
+                                        <span>Taken</span>
+                                    </div>
+                                    {% for log_entry in medicine_data.dates_in_period %}
+                                        <div class="log-row">
+                                            <span>{{ log_entry.date|date:"M d, Y" }}</span>
+                                            <input type="checkbox" 
+                                                   id="log-{{ medicine_data.medicine_obj.id }}-{{ log_entry.date|date:"Ymd" }}"
+                                                   data-medicine-id="{{ medicine_data.medicine_obj.id }}"
+                                                   data-date="{{ log_entry.date|date:"Y-m-d" }}"
+                                                   {% if log_entry.taken %}checked{% endif %} />
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="chart-container">
+                        <h4>Adherence Chart</h4>
+                        <canvas id="medicineChart-{{ prescription_data.prescription_obj.id }}"></canvas>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="no-prescriptions">
+                <p>No active prescriptions found. Please consult your doctor.</p>
+            </div>
+        {% endif %}
+    </div>
+</section>
+
+<section class="tracker-section">
+    <div class="container">
+        <!-- Weight Tracking Section -->
+        <div class="data-section">
+            <h3 class="section-subtitle">Weight Tracker</h3>
+            <form id="weight-form" method="post" action="{% url 'add_weight' %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="weight">Current Weight (kg):</label>
+                    <input type="number" step="0.1" class="form-control" id="weight" name="weight" required>
+                </div>
+                <div class="form-group">
+                    <label for="weight_date">Date:</label>
+                    <input type="date" class="form-control" id="weight_date" name="date" required>
+                </div>
+                <button type="submit" class="btn btn-primary mt-3">Add Weight</button>
+            </form>
+
+            <h4 class="mt-4">Weight History</h4>
+            {% if active_weight_goal %}
+                <div class="alert alert-info mt-3">
+                    <strong>Current Goal:</strong> {{ active_weight_goal.target_weight }} kg (Set on {{ active_weight_goal.set_date }})
+                </div>
+            {% endif %}
+            <form method="post" action="{% url 'set_weight_goal' %}" class="mt-3">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="target_weight">Set New Weight Goal (kg):</label>
+                    <input type="number" step="0.1" class="form-control" id="target_weight" name="target_weight" required>
+                </div>
+                <button type="submit" class="btn btn-secondary btn-sm mt-2">Set Goal</button>
+            </form>
+            <ul class="list-group">
+                {% for entry in weight_data %}
+                <li class="list-group-item">
+                    {{ entry.date }}: {{ entry.weight }} kg
+                    <form method="post" action="{% url 'delete_weight' entry.id %}" class="d-inline">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    </form>
+                </li>
+                {% empty %}
+                <li class="list-group-item">No weight data yet.</li>
+                {% endfor %}
+            </ul>
+            <div class="chart-container">
+                <canvas id="weightChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Blood Pressure Tracking Section -->
+        <div class="data-section">
+            <h3 class="section-subtitle">Blood Pressure Tracker</h3>
+            <form id="blood-pressure-form" method="post" action="{% url 'add_blood_pressure' %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="systolic">Systolic (mmHg):</label>
+                    <input type="number" class="form-control" id="systolic" name="systolic" required>
+                </div>
+                <div class="form-group">
+                    <label for="diastolic">Diastolic (mmHg):</label>
+                    <input type="number" class="form-control" id="diastolic" name="diastolic" required>
+                </div>
+                <div class="form-group">
+                    <label for="bp_date">Date:</label>
+                    <input type="date" class="form-control" id="bp_date" name="date" required>
+                </div>
+                <button type="submit" class="btn btn-primary mt-3">Add Blood Pressure</button>
+            </form>
+
+            <h4 class="mt-4">Blood Pressure History</h4>
+            {% if active_blood_pressure_goal %}
+                <div class="alert alert-info mt-3">
+                    <strong>Current Goal:</strong> {{ active_blood_pressure_goal.target_systolic }}/{{ active_blood_pressure_goal.target_diastolic }} mmHg (Set on {{ active_blood_pressure_goal.set_date }})
+                </div>
+            {% endif %}
+            <form method="post" action="{% url 'set_blood_pressure_goal' %}" class="mt-3">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="target_systolic">Set New Systolic Goal (mmHg):</label>
+                    <input type="number" class="form-control" id="target_systolic" name="target_systolic" required>
+                </div>
+                <div class="form-group">
+                    <label for="target_diastolic">Set New Diastolic Goal (mmHg):</label>
+                    <input type="number" class="form-control" id="target_diastolic" name="target_diastolic" required>
+                </div>
+                <button type="submit" class="btn btn-secondary btn-sm mt-2">Set Goal</button>
+            </form>
+            <ul class="list-group">
+                {% for entry in blood_pressure_data %}
+                <li class="list-group-item">
+                    {{ entry.date }}: {{ entry.systolic }}/{{ entry.diastolic }} mmHg
+                    <form method="post" action="{% url 'delete_blood_pressure' entry.id %}" class="d-inline">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    </form>
+                </li>
+                {% empty %}
+                <li class="list-group-item">No blood pressure data yet.</li>
+                {% endfor %}
+            </ul>
+            <div class="chart-container">
+                <canvas id="bloodPressureChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Glucose Tracking Section -->
+        <div class="data-section">
+            <h3 class="section-subtitle">Glucose Tracker</h3>
+            <form id="glucose-form" method="post" action="{% url 'add_glucose' %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="glucose_level">Glucose Level (mg/dL):</label>
+                    <input type="number" step="0.1" class="form-control" id="glucose_level" name="glucose_level" required>
+                </div>
+                <div class="form-group">
+                    <label for="glucose_date">Date:</label>
+                    <input type="date" class="form-control" id="glucose_date" name="date" required>
+                </div>
+                <button type="submit" class="btn btn-primary mt-3">Add Glucose</button>
+            </form>
+
+            <h4 class="mt-4">Glucose History</h4>
+            {% if active_glucose_goal %}
+                <div class="alert alert-info mt-3">
+                    <strong>Current Goal:</strong> {{ active_glucose_goal.target_glucose_level }} mg/dL (Set on {{ active_glucose_goal.set_date }})
+                </div>
+            {% endif %}
+            <form method="post" action="{% url 'set_glucose_goal' %}" class="mt-3">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="target_glucose_level">Set New Glucose Goal (mg/dL):</label>
+                    <input type="number" step="0.1" class="form-control" id="target_glucose_level" name="target_glucose_level" required>
+                </div>
+                <button type="submit" class="btn btn-secondary btn-sm mt-2">Set Goal</button>
+            </form>
+            <ul class="list-group">
+                {% for entry in glucose_data %}
+                <li class="list-group-item">
+                    {{ entry.date }}: {{ entry.glucose_level }} mg/dL
+                    <form method="post" action="{% url 'delete_glucose' entry.id %}" class="d-inline">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    </form>
+                </li>
+                {% empty %}
+                <li class="list-group-item">No glucose data yet.</li>
+                {% endfor %}
+            </ul>
+            <div class="chart-container">
+                <canvas id="glucoseChart"></canvas>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="tracker-section">
+    <div class="container">
+        <!-- Activity Tracking Section -->
+        <div class="data-section">
+            <h3 class="section-subtitle">Activity Tracker</h3>
+            <form id="activity-form" method="post" action="{% url 'add_activity' %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="activity_type">Activity Type:</label>
+                    <input type="text" class="form-control" id="activity_type" name="activity_type" required>
+                </div>
+                <div class="form-group">
+                    <label for="duration_minutes">Duration (minutes):</label>
+                    <input type="number" class="form-control" id="duration_minutes" name="duration_minutes" required>
+                </div>
+                <div class="form-group">
+                    <label for="calories_burned">Calories Burned (optional):</label>
+                    <input type="number" class="form-control" id="calories_burned" name="calories_burned">
+                </div>
+                <div class="form-group">
+                    <label for="activity_date">Date:</label>
+                    <input type="date" class="form-control" id="activity_date" name="date" required>
+                </div>
+                <button type="submit" class="btn btn-primary mt-3">Add Activity</button>
+            </form>
+
+            <h4 class="mt-4">Activity History</h4>
+            <ul class="list-group">
+                {% for entry in activity_data %}
+                <li class="list-group-item">
+                    {{ entry.date }}: {{ entry.activity_type }} - {{ entry.duration_minutes }} mins
+                    {% if entry.calories_burned %}({{ entry.calories_burned }} kcal){% endif %}
+                    <form method="post" action="{% url 'delete_activity' entry.id %}" class="d-inline">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    </form>
+                </li>
+                {% empty %}
+                <li class="list-group-item">No activity data yet.</li>
+                {% endfor %}
+            </ul>
+            <div class="chart-container">
+                <canvas id="activityChart"></canvas>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Function to create or update a Chart.js chart
+        function createOrUpdateChart(canvasId, takenCount, totalCount) {
+            const canvas = document.getElementById(canvasId);
+            if (!canvas) return;
+
+            // Destroy existing chart instance if it exists
+            if (Chart.getChart(canvasId)) {
+                Chart.getChart(canvasId).destroy();
+            }
+
+            const missedCount = totalCount - takenCount;
+
+            new Chart(canvas, {
+                type: 'pie',
+                data: {
+                    labels: ['Taken', 'Missed'],
+                    datasets: [{
+                        label: 'Medication Adherence',
+                        data: [takenCount, missedCount],
+                        backgroundColor: [
+                            'rgba(75, 192, 192, 0.6)', // Green for taken
+                            'rgba(255, 99, 132, 0.6)'  // Red for missed
+                        ],
+                        borderColor: [
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(255, 99, 132, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: true,
+                            text: 'Medication Adherence'
+                        }
+                    }
+                }
+            });
+        }
+
+        // Handle checkbox toggling
+        document.querySelectorAll('.dosage-log input[type="checkbox"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const medicineId = this.dataset.medicineId;
+                const date = this.dataset.date;
+                const taken = this.checked;
+                const prescriptionCard = this.closest('.prescription-card');
+                const prescriptionId = prescriptionCard.querySelector('canvas').id.split('-')[1];
+
+
+                fetch('{% url "update_dosage_log" %}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': '{{ csrf_token }}'
+                    },
+                    body: JSON.stringify({
+                        medicine_id: medicineId,
+                        date: date,
+                        taken: taken
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        console.log('Dosage log updated successfully');
+                        // Re-calculate and update the chart for this prescription
+                        // This requires re-parsing the DOM or fetching fresh data
+                        updateAllCharts(); // Simpler to re-render all for now
+                    } else {
+                        console.error('Failed to update dosage log:', data.message);
+                        this.checked = !taken; 
+                    }
+                })
+                .catch(error => {
+                    console.error('Error updating dosage log:', error);
+                    this.checked = !taken; 
+                });
+            });
+        });
+        
+        function updateAllCharts() {
+            document.querySelectorAll('.prescription-card').forEach(card => {
+                const prescriptionId = card.querySelector('canvas').id.split('-')[1];
+                let takenCount = 0;
+                let totalCount = 0;
+
+                card.querySelectorAll('.medicine-entry').forEach(medicineEntry => {
+                    medicineEntry.querySelectorAll('.dosage-log .log-row input[type="checkbox"]').forEach(checkbox => {
+                        totalCount++;
+                        if (checkbox.checked) {
+                            takenCount++;
+                        }
+                    });
+                });
+                createOrUpdateChart('medicineChart-' + prescriptionId, takenCount, totalCount);
+            });
+        }
+
+        // Initial chart rendering
+        updateAllCharts();
+
+        // New Charts for Weight, Blood Pressure, and Glucose
+        const weightChartData = JSON.parse('{{ weight_chart_data|escapejs }}');
+        const bpChartData = JSON.parse('{{ bp_chart_data|escapejs }}');
+        const glucoseChartData = JSON.parse('{{ glucose_chart_data|escapejs }}');
+
+        function createLineChart(canvasId, labels, data, label, borderColor, backgroundColor) {
+            const canvas = document.getElementById(canvasId);
+            if (!canvas) return;
+            new Chart(canvas, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: label,
+                        data: data,
+                        borderColor: borderColor,
+                        backgroundColor: backgroundColor,
+                        tension: 0.1,
+                        fill: false
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        x: {
+                            type: 'time',
+                            time: {
+                                unit: 'day'
+                            },
+                            title: {
+                                display: true,
+                                text: 'Date'
+                            }
+                        },
+                        y: {
+                            beginAtZero: false,
+                            title: {
+                                display: true,
+                                text: label
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: true
+                        }
+                    }
+                }
+            });
+        }
+
+        if (weightChartData.dates && weightChartData.values) {
+            createLineChart('weightChart', weightChartData.dates, weightChartData.values, 'Weight (kg)', 'rgba(255, 99, 132, 1)', 'rgba(255, 99, 132, 0.2)');
+        }
+
+        if (bpChartData.dates && bpChartData.systolic && bpChartData.diastolic) {
+            const canvas = document.getElementById('bloodPressureChart');
+            if (canvas) {
+                new Chart(canvas, {
+                    type: 'line',
+                    data: {
+                        labels: bpChartData.dates,
+                        datasets: [
+                            {
+                                label: 'Systolic (mmHg)',
+                                data: bpChartData.systolic,
+                                borderColor: 'rgba(54, 162, 235, 1)',
+                                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                                tension: 0.1,
+                                fill: false
+                            },
+                            {
+                                label: 'Diastolic (mmHg)',
+                                data: bpChartData.diastolic,
+                                borderColor: 'rgba(255, 206, 86, 1)',
+                                backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                                tension: 0.1,
+                                fill: false
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            x: {
+                                type: 'time',
+                                time: {
+                                    unit: 'day'
+                                },
+                                title: {
+                                    display: true,
+                                    text: 'Date'
+                                }
+                            },
+                            y: {
+                                beginAtZero: false,
+                                title: {
+                                    display: true,
+                                    text: 'Blood Pressure (mmHg)'
+                                }
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                display: true
+                            }
+                        }
+                    }
+                });
+            }
+        }
+
+        if (glucoseChartData.dates && glucoseChartData.values) {
+            createLineChart('glucoseChart', glucoseChartData.dates, glucoseChartData.values, 'Glucose (mg/dL)', 'rgba(75, 192, 192, 1)', 'rgba(75, 192, 192, 0.2)');
+        }
+
+        // New Chart for Activity
+        const activityChartData = JSON.parse('{{ activity_chart_data|escapejs }}');
+        if (activityChartData.dates && activityChartData.durations) {
+            new Chart(document.getElementById('activityChart'), {
+                type: 'bar',
+                data: {
+                    labels: activityChartData.dates,
+                    datasets: [{
+                        label: 'Activity Duration (minutes)',
+                        data: activityChartData.durations,
+                        backgroundColor: 'rgba(153, 102, 255, 0.6)',
+                        borderColor: 'rgba(153, 102, 255, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        x: {
+                            type: 'time',
+                            time: {
+                                unit: 'day'
+                            },
+                            title: {
+                                display: true,
+                                text: 'Date'
+                            }
+                        },
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Duration (minutes)'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: true
+                        },
+                        tooltip: {
+                            callbacks: {
+                                title: function(tooltipItems) {
+                                    return 'Date: ' + tooltipItems[0].label;
+                                },
+                                label: function(tooltipItem) {
+                                    const index = tooltipItem.dataIndex;
+                                    const activityType = activityChartData.types[index];
+                                    const duration = activityChartData.durations[index];
+                                    const calories = activityChartData.calories[index];
+                                    let label = `Activity: ${activityType}, Duration: ${duration} mins`;
+                                    if (calories > 0) {
+                                        label += `, Calories: ${calories} kcal`;
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // New Chart for Dietary (Calories)
+        const mealChartData = JSON.parse('{{ meal_chart_data|escapejs }}');
+        if (mealChartData.dates && mealChartData.calories) {
+            new Chart(document.getElementById('mealChart'), {
+                type: 'bar',
+                data: {
+                    labels: mealChartData.dates,
+                    datasets: [{
+                        label: 'Calories Consumed',
+                        data: mealChartData.calories,
+                        backgroundColor: 'rgba(255, 159, 64, 0.6)',
+                        borderColor: 'rgba(255, 159, 64, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        x: {
+                            type: 'time',
+                            time: {
+                                unit: 'day'
+                            },
+                            title: {
+                                display: true,
+                                text: 'Date'
+                            }
+                        },
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Calories'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: true
+                        }
+                    }
+                }
+            });
+        }
+    });
+</script>
+{% endblock %}

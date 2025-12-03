@@ -1,0 +1,870 @@
+[
+  {
+    "name": "Levothyroxine",
+    "manufacturer": "Generic",
+    "composition": "Levothyroxine 50mcg",
+    "price": 10.00,
+    "search_tag": "levothyroxine",
+    "substitutes": [
+      {"name": "Eltroxin 50", "manufacturer": "GlaxoSmithKline", "composition": "Levothyroxine 50mcg", "price": 12.00},
+      {"name": "Thyronorm 50", "manufacturer": "Abbott", "composition": "Levothyroxine 50mcg", "price": 11.50},
+      {"name": "Thyrox 50", "manufacturer": "Macleods Pharma", "composition": "Levothyroxine 50mcg", "price": 10.50},
+      {"name": "Unithyrox 50", "manufacturer": "Sanofi India", "composition": "Levothyroxine 50mcg", "price": 11.00},
+      {"name": "Lethyrox 50", "manufacturer": "Merck", "composition": "Levothyroxine 50mcg", "price": 12.50}
+    ]
+  },
+  {
+    "name": "Amlodipine",
+    "manufacturer": "Generic",
+    "composition": "Amlodipine 5mg",
+    "price": 8.00,
+    "search_tag": "amlodipine",
+    "substitutes": [
+      {"name": "Amlong 5", "manufacturer": "Micro Labs", "composition": "Amlodipine 5mg", "price": 9.50},
+      {"name": "Stamlo 5", "manufacturer": "Dr. Reddy's Laboratories", "composition": "Amlodipine 5mg", "price": 9.00},
+      {"name": "Amlopres 5", "manufacturer": "Cipla", "composition": "Amlodipine 5mg", "price": 8.80},
+      {"name": "Norvasc 5", "manufacturer": "Pfizer", "composition": "Amlodipine 5mg", "price": 15.00},
+      {"name": "Cardilopin 5", "manufacturer": "Novartis", "composition": "Amlodipine 5mg", "price": 14.00}
+    ]
+  },
+  {
+    "name": "Gabapentin",
+    "manufacturer": "Generic",
+    "composition": "Gabapentin 300mg",
+    "price": 30.00,
+    "search_tag": "gabapentin",
+    "substitutes": [
+      {"name": "Gabapin 300", "manufacturer": "Mankind Pharma", "composition": "Gabapentin 300mg", "price": 32.00},
+      {"name": "Neurontin 300", "manufacturer": "Pfizer", "composition": "Gabapentin 300mg", "price": 45.00},
+      {"name": "Gabator 300", "manufacturer": "Torrent Pharma", "composition": "Gabapentin 300mg", "price": 31.00},
+      {"name": "Gabatop 300", "manufacturer": "Cipla", "composition": "Gabapentin 300mg", "price": 30.50},
+      {"name": "Pentin 300", "manufacturer": "Sun Pharma", "composition": "Gabapentin 300mg", "price": 31.50}
+    ]
+  },
+  {
+    "name": "Tramadol",
+    "manufacturer": "Generic",
+    "composition": "Tramadol 50mg",
+    "price": 20.00,
+    "search_tag": "tramadol",
+    "substitutes": [
+      {"name": "Contramal 50", "manufacturer": "Grünenthal", "composition": "Tramadol 50mg", "price": 25.00},
+      {"name": "Tramacip 50", "manufacturer": "Cipla", "composition": "Tramadol 50mg", "price": 21.00},
+      {"name": "Ultram 50", "manufacturer": "Johnson & Johnson", "composition": "Tramadol 50mg", "price": 30.00},
+      {"name": "Tramazac 50", "manufacturer": "Zydus Cadila", "composition": "Tramadol 50mg", "price": 20.50},
+      {"name": "Dolol 50", "manufacturer": "Sun Pharma", "composition": "Tramadol 50mg", "price": 21.50}
+    ]
+  },
+  {
+    "name": "Warfarin",
+    "manufacturer": "Generic",
+    "composition": "Warfarin 5mg",
+    "price": 15.00,
+    "search_tag": "warfarin",
+    "substitutes": [
+      {"name": "Coumadin 5", "manufacturer": "Bristol-Myers Squibb", "composition": "Warfarin 5mg", "price": 25.00},
+      {"name": "Warf 5", "manufacturer": "Cipla", "composition": "Warfarin 5mg", "price": 16.00},
+      {"name": "Uniwarfin 5", "manufacturer": "Unichem Laboratories", "composition": "Warfarin 5mg", "price": 15.50},
+      {"name": "Marevan 5", "manufacturer": "Orion Pharma", "composition": "Warfarin 5mg", "price": 20.00},
+      {"name": "Sofarin 5", "manufacturer": "Sun Pharma", "composition": "Warfarin 5mg", "price": 16.50}
+    ]
+  },
+  {
+    "name": "Metoprolol",
+    "manufacturer": "Generic",
+    "composition": "Metoprolol 50mg",
+    "price": 12.00,
+    "search_tag": "metoprolol",
+    "substitutes": [
+      {"name": "Betaloc 50", "manufacturer": "AstraZeneca", "composition": "Metoprolol 50mg", "price": 15.00},
+      {"name": "Metolar 50", "manufacturer": "Cipla", "composition": "Metoprolol 50mg", "price": 13.00},
+      {"name": "Seloken XL 50", "manufacturer": "AstraZeneca", "composition": "Metoprolol Succinate ER 50mg", "price": 16.00},
+      {"name": "Toprol XL 50", "manufacturer": "AstraZeneca", "composition": "Metoprolol Succinate ER 50mg", "price": 17.00},
+      {"name": "Metopres 50", "manufacturer": "Micro Labs", "composition": "Metoprolol 50mg", "price": 12.50}
+    ]
+  },
+  {
+    "name": "Pantoprazole",
+    "manufacturer": "Generic",
+    "composition": "Pantoprazole 40mg",
+    "price": 18.00,
+    "search_tag": "pantoprazole",
+    "substitutes": [
+      {"name": "Pantocid 40", "manufacturer": "Sun Pharma", "composition": "Pantoprazole 40mg", "price": 20.00},
+      {"name": "Pan 40", "manufacturer": "Alkem Laboratories", "composition": "Pantoprazole 40mg", "price": 19.00},
+      {"name": "Pentaloc 40", "manufacturer": "Cadila Healthcare", "composition": "Pantoprazole 40mg", "price": 18.50},
+      {"name": "Nexpraz 40", "manufacturer": "Torrent Pharma", "composition": "Pantoprazole 40mg", "price": 19.50},
+      {"name": "Protium 40", "manufacturer": "Zydus Cadila", "composition": "Pantoprazole 40mg", "price": 20.50}
+    ]
+  },
+  {
+    "name": "Montelukast",
+    "manufacturer": "Generic",
+    "composition": "Montelukast 10mg",
+    "price": 22.00,
+    "search_tag": "montelukast",
+    "substitutes": [
+      {"name": "Montair 10", "manufacturer": "Cipla", "composition": "Montelukast 10mg", "price": 25.00},
+      {"name": "Singulair 10", "manufacturer": "MSD Pharmaceuticals", "composition": "Montelukast 10mg", "price": 35.00},
+      {"name": "Montek 10", "manufacturer": "Sun Pharma", "composition": "Montelukast 10mg", "price": 23.00},
+      {"name": "L-Montus 10", "manufacturer": "Macleods Pharma", "composition": "Montelukast 10mg", "price": 24.00},
+      {"name": "Telekast 10", "manufacturer": "Lupin", "composition": "Montelukast 10mg", "price": 23.50}
+    ]
+  },
+  {
+    "name": "Prednisone",
+    "manufacturer": "Generic",
+    "composition": "Prednisone 10mg",
+    "price": 7.00,
+    "search_tag": "prednisone",
+    "substitutes": [
+      {"name": "Omnacortil 10", "manufacturer": "Macleods Pharma", "composition": "Prednisone 10mg", "price": 8.50},
+      {"name": "Prednisolone 10", "manufacturer": "Generic", "composition": "Prednisolone 10mg", "price": 7.50},
+      {"name": "Wysolone 10", "manufacturer": "Wyeth Ltd", "composition": "Prednisone 10mg", "price": 9.00},
+      {"name": "Predone 10", "manufacturer": "Cipla", "composition": "Prednisone 10mg", "price": 8.00},
+      {"name": "Deltacortril 10", "manufacturer": "Pfizer", "composition": "Prednisone 10mg", "price": 10.00}
+    ]
+  },
+  {
+    "name": "Escitalopram",
+    "manufacturer": "Generic",
+    "composition": "Escitalopram 10mg",
+    "price": 35.00,
+    "search_tag": "escitalopram",
+    "substitutes": [
+      {"name": "Nexito 10", "manufacturer": "Sun Pharma", "composition": "Escitalopram 10mg", "price": 38.00},
+      {"name": "Espram 10", "manufacturer": "Torrent Pharma", "composition": "Escitalopram 10mg", "price": 36.00},
+      {"name": "Cipralex 10", "manufacturer": "Lundbeck", "composition": "Escitalopram 10mg", "price": 50.00},
+      {"name": "S-Citadep 10", "manufacturer": "Cipla", "composition": "Escitalopram 10mg", "price": 37.00},
+      {"name": "Eslop 10", "manufacturer": "Micro Labs", "composition": "Escitalopram 10mg", "price": 35.50}
+    ]
+  },
+  {
+    "name": "Azithromycin",
+    "manufacturer": "Generic",
+    "composition": "Azithromycin 500mg",
+    "price": 40.00,
+    "search_tag": "azithromycin",
+    "substitutes": [
+      {"name": "Azithral 500", "manufacturer": "Alembic Pharmaceuticals", "composition": "Azithromycin 500mg", "price": 42.00},
+      {"name": "Zithromax 500", "manufacturer": "Pfizer", "composition": "Azithromycin 500mg", "price": 60.00},
+      {"name": "Azee 500", "manufacturer": "Cipla", "composition": "Azithromycin 500mg", "price": 41.00},
+      {"name": "Zady 500", "manufacturer": "Macleods Pharma", "composition": "Azithromycin 500mg", "price": 40.50},
+      {"name": "Azicip 500", "manufacturer": "Cipla", "composition": "Azithromycin 500mg", "price": 41.50}
+    ]
+  },
+  {
+    "name": "Doxycycline",
+    "manufacturer": "Generic",
+    "composition": "Doxycycline 100mg",
+    "price": 20.00,
+    "search_tag": "doxycycline",
+    "substitutes": [
+      {"name": "Doxy 100", "manufacturer": "Dr. Reddy's Laboratories", "composition": "Doxycycline 100mg", "price": 22.00},
+      {"name": "Doxypal 100", "manufacturer": "Ipca Laboratories", "composition": "Doxycycline 100mg", "price": 21.00},
+      {"name": "Doxy-1 L Dr", "manufacturer": "Glenmark Pharmaceuticals", "composition": "Doxycycline 100mg", "price": 23.00},
+      {"name": "Microdox 100", "manufacturer": "Micro Labs", "composition": "Doxycycline 100mg", "price": 21.50},
+      {"name": "Tetradox 100", "manufacturer": "Pfizer", "composition": "Doxycycline 100mg", "price": 25.00}
+    ]
+  },
+  {
+    "name": "Fluoxetine",
+    "manufacturer": "Generic",
+    "composition": "Fluoxetine 20mg",
+    "price": 28.00,
+    "search_tag": "fluoxetine",
+    "substitutes": [
+      {"name": "Prozac 20", "manufacturer": "Eli Lilly", "composition": "Fluoxetine 20mg", "price": 40.00},
+      {"name": "Fludac 20", "manufacturer": "Cadila Healthcare", "composition": "Fluoxetine 20mg", "price": 29.00},
+      {"name": "Depzac 20", "manufacturer": "Cipla", "composition": "Fluoxetine 20mg", "price": 28.50},
+      {"name": "Oxetine 20", "manufacturer": "Sun Pharma", "composition": "Fluoxetine 20mg", "price": 29.50},
+      {"name": "Flunil 20", "manufacturer": "Intas Pharmaceuticals", "composition": "Fluoxetine 20mg", "price": 27.50}
+    ]
+  },
+  {
+    "name": "Naproxen",
+    "manufacturer": "Generic",
+    "composition": "Naproxen 500mg",
+    "price": 15.00,
+    "search_tag": "naproxen",
+    "substitutes": [
+      {"name": "Naprosyn 500", "manufacturer": "Cipla", "composition": "Naproxen 500mg", "price": 17.00},
+      {"name": "Proxyn 500", "manufacturer": "Macleods Pharma", "composition": "Naproxen 500mg", "price": 16.00},
+      {"name": "Synflex 500", "manufacturer": "Roche", "composition": "Naproxen 500mg", "price": 20.00},
+      {"name": "Xenobid 500", "manufacturer": "Aristo Pharma", "composition": "Naproxen 500mg", "price": 16.50},
+      {"name": "Naprol 500", "manufacturer": "Torrent Pharma", "composition": "Naproxen 500mg", "price": 15.50}
+    ]
+  },
+  {
+    "name": "Allopurinol",
+    "manufacturer": "Generic",
+    "composition": "Allopurinol 100mg",
+    "price": 10.00,
+    "search_tag": "allopurinol",
+    "substitutes": [
+      {"name": "Zyloric 100", "manufacturer": "GlaxoSmithKline", "composition": "Allopurinol 100mg", "price": 13.00},
+      {"name": "Zyloprim 100", "manufacturer": "Promius Pharma", "composition": "Allopurinol 100mg", "price": 14.00},
+      {"name": "Goutnil 100", "manufacturer": "Cipla", "composition": "Allopurinol 100mg", "price": 11.00},
+      {"name": "Allorik 100", "manufacturer": "Micro Labs", "composition": "Allopurinol 100mg", "price": 10.50},
+      {"name": "Aloric 100", "manufacturer": "Torrent Pharma", "composition": "Allopurinol 100mg", "price": 11.50}
+    ]
+  },
+  {
+    "name": "Ranitidine",
+    "manufacturer": "Generic",
+    "composition": "Ranitidine 150mg",
+    "price": 5.00,
+    "search_tag": "ranitidine",
+    "substitutes": [
+      {"name": "Zinetac 150", "manufacturer": "GlaxoSmithKline", "composition": "Ranitidine 150mg", "price": 7.00},
+      {"name": "Aciloc 150", "manufacturer": "Cadila Healthcare", "composition": "Ranitidine 150mg", "price": 6.00},
+      {"name": "Rantac 150", "manufacturer": "J B Chemicals", "composition": "Ranitidine 150mg", "price": 5.50},
+      {"name": "Razo 150", "manufacturer": "Dr. Reddy's Laboratories", "composition": "Ranitidine 150mg", "price": 6.50},
+      {"name": "Peptiran 150", "manufacturer": "Sun Pharma", "composition": "Ranitidine 150mg", "price": 5.80}
+    ]
+  },
+  {
+    "name": "Clonazepam",
+    "manufacturer": "Generic",
+    "composition": "Clonazepam 0.5mg",
+    "price": 12.00,
+    "search_tag": "clonazepam",
+    "substitutes": [
+      {"name": "Rivotril 0.5", "manufacturer": "Roche", "composition": "Clonazepam 0.5mg", "price": 20.00},
+      {"name": "Clonotril 0.5", "manufacturer": "Torrent Pharma", "composition": "Clonazepam 0.5mg", "price": 13.00},
+      {"name": "Zapiz 0.5", "manufacturer": "Intas Pharmaceuticals", "composition": "Clonazepam 0.5mg", "price": 12.50},
+      {"name": "Lonazep 0.5", "manufacturer": "Sun Pharma", "composition": "Clonazepam 0.5mg", "price": 12.80},
+      {"name": "Clozam 0.5", "manufacturer": "Cipla", "composition": "Clonazepam 0.5mg", "price": 12.20}
+    ]
+  },
+  {
+    "name": "Losartan",
+    "manufacturer": "Generic",
+    "composition": "Losartan 50mg",
+    "price": 20.00,
+    "search_tag": "losartan",
+    "substitutes": [
+      {"name": "Cozaar 50", "manufacturer": "MSD Pharmaceuticals", "composition": "Losartan 50mg", "price": 30.00},
+      {"name": "Losar 50", "manufacturer": "Unichem Laboratories", "composition": "Losartan 50mg", "price": 21.00},
+      {"name": "Losakind 50", "manufacturer": "Mankind Pharma", "composition": "Losartan 50mg", "price": 20.50},
+      {"name": "Losium 50", "manufacturer": "Cadila Healthcare", "composition": "Losartan 50mg", "price": 21.50},
+      {"name": "Rezalt 50", "manufacturer": "Dr. Reddy's Laboratories", "composition": "Losartan 50mg", "price": 22.00}
+    ]
+  },
+  {
+    "name": "Furosemide",
+    "manufacturer": "Generic",
+    "composition": "Furosemide 40mg",
+    "price": 6.00,
+    "search_tag": "furosemide",
+    "substitutes": [
+      {"name": "Lasix 40", "manufacturer": "Sanofi India", "composition": "Furosemide 40mg", "price": 8.00},
+      {"name": "Fruselac 40", "manufacturer": "Cipla", "composition": "Furosemide 40mg", "price": 7.00},
+      {"name": "Furoside 40", "manufacturer": "Torrent Pharma", "composition": "Furosemide 40mg", "price": 6.50},
+      {"name": "Retzide 40", "manufacturer": "Sun Pharma", "composition": "Furosemide 40mg", "price": 7.50},
+      {"name": "Urilasix 40", "manufacturer": "Micro Labs", "composition": "Furosemide 40mg", "price": 6.80}
+    ]
+  },
+  {
+    "name": "Citalopram",
+    "manufacturer": "Generic",
+    "composition": "Citalopram 20mg",
+    "price": 32.00,
+    "search_tag": "citalopram",
+    "substitutes": [
+      {"name": "Celexa 20", "manufacturer": "Forest Laboratories", "composition": "Citalopram 20mg", "price": 45.00},
+      {"name": "Citalop 20", "manufacturer": "Cipla", "composition": "Citalopram 20mg", "price": 33.00},
+      {"name": "C-Pram 20", "manufacturer": "Torrent Pharma", "composition": "Citalopram 20mg", "price": 32.50},
+      {"name": "Cilapam 20", "manufacturer": "Sun Pharma", "composition": "Citalopram 20mg", "price": 33.50},
+      {"name": "Talpram 20", "manufacturer": "Intas Pharmaceuticals", "composition": "Citalopram 20mg", "price": 31.50}
+    ]
+  },
+  {
+    "name": "Simvastatin",
+    "manufacturer": "Generic",
+    "composition": "Simvastatin 20mg",
+    "price": 15.00,
+    "search_tag": "simvastatin",
+    "substitutes": [
+      {"name": "Zocor 20", "manufacturer": "MSD Pharmaceuticals", "composition": "Simvastatin 20mg", "price": 25.00},
+      {"name": "Simvotin 20", "manufacturer": "Cipla", "composition": "Simvastatin 20mg", "price": 16.00},
+      {"name": "Simcard 20", "manufacturer": "Torrent Pharma", "composition": "Simvastatin 20mg", "price": 15.50},
+      {"name": "Simvax 20", "manufacturer": "Sun Pharma", "composition": "Simvastatin 20mg", "price": 16.50},
+      {"name": "Statin 20", "manufacturer": "Micro Labs", "composition": "Simvastatin 20mg", "price": 15.80}
+    ]
+  },
+  {
+    "name": "Meloxicam",
+    "manufacturer": "Generic",
+    "composition": "Meloxicam 15mg",
+    "price": 10.00,
+    "search_tag": "meloxicam",
+    "substitutes": [
+      {"name": "Mobic 15", "manufacturer": "Boehringer Ingelheim", "composition": "Meloxicam 15mg", "price": 15.00},
+      {"name": "Meloflam 15", "manufacturer": "Macleods Pharma", "composition": "Meloxicam 15mg", "price": 11.00},
+      {"name": "Melox 15", "manufacturer": "Cipla", "composition": "Meloxicam 15mg", "price": 10.50},
+      {"name": "Moviz 15", "manufacturer": "Sun Pharma", "composition": "Meloxicam 15mg", "price": 11.50},
+      {"name": "Flexi-M 15", "manufacturer": "Torrent Pharma", "composition": "Meloxicam 15mg", "price": 10.80}
+    ]
+  },
+  {
+    "name": "Rosuvastatin",
+    "manufacturer": "Generic",
+    "composition": "Rosuvastatin 10mg",
+    "price": 30.00,
+    "search_tag": "rosuvastatin",
+    "substitutes": [
+      {"name": "Crestor 10", "manufacturer": "AstraZeneca", "composition": "Rosuvastatin 10mg", "price": 45.00},
+      {"name": "Rozavel 10", "manufacturer": "Sun Pharma", "composition": "Rosuvastatin 10mg", "price": 32.00},
+      {"name": "Rosuvas 10", "manufacturer": "Torrent Pharma", "composition": "Rosuvastatin 10mg", "price": 31.00},
+      {"name": "Rosy 10", "manufacturer": "USV Pvt Ltd", "composition": "Rosuvastatin 10mg", "price": 30.50},
+      {"name": "Novastat 10", "manufacturer": "Lupin", "composition": "Rosuvastatin 10mg", "price": 31.50}
+    ]
+  },
+  {
+    "name": "Clopidogrel",
+    "manufacturer": "Generic",
+    "composition": "Clopidogrel 75mg",
+    "price": 25.00,
+    "search_tag": "clopidogrel",
+    "substitutes": [
+      {"name": "Plavix 75", "manufacturer": "Sanofi", "composition": "Clopidogrel 75mg", "price": 40.00},
+      {"name": "Clopilet 75", "manufacturer": "Cipla", "composition": "Clopidogrel 75mg", "price": 27.00},
+      {"name": "Clopivas 75", "manufacturer": "Torrent Pharma", "composition": "Clopidogrel 75mg", "price": 26.00},
+      {"name": "Deplatt 75", "manufacturer": "Macleods Pharma", "composition": "Clopidogrel 75mg", "price": 26.50},
+      {"name": "Clopirel 75", "manufacturer": "Sun Pharma", "composition": "Clopidogrel 75mg", "price": 25.50}
+    ]
+  },
+  {
+    "name": "Hydrochlorothiazide",
+    "manufacturer": "Generic",
+    "composition": "Hydrochlorothiazide 25mg",
+    "price": 7.00,
+    "search_tag": "hydrochlorothiazide",
+    "substitutes": [
+      {"name": "Esidrex 25", "manufacturer": "Novartis", "composition": "Hydrochlorothiazide 25mg", "price": 10.00},
+      {"name": "Aquazide 25", "manufacturer": "Cipla", "composition": "Hydrochlorothiazide 25mg", "price": 8.00},
+      {"name": "Hytaz 25", "manufacturer": "Sun Pharma", "composition": "Hydrochlorothiazide 25mg", "price": 7.50},
+      {"name": "Thiazide 25", "manufacturer": "Generic", "composition": "Hydrochlorothiazide 25mg", "price": 7.20},
+      {"name": "Diuril 25", "manufacturer": "MSD Pharmaceuticals", "composition": "Hydrochlorothiazide 25mg", "price": 9.00}
+    ]
+  },
+  {
+    "name": "Ventolin (Albuterol)",
+    "manufacturer": "Generic",
+    "composition": "Salbutamol 100mcg Inhaler",
+    "price": 150.00,
+    "search_tag": "ventolin",
+    "substitutes": [
+      {"name": "Asthalin Inhaler", "manufacturer": "Cipla", "composition": "Salbutamol 100mcg Inhaler", "price": 140.00},
+      {"name": "Salbair Inhaler", "manufacturer": "Lupin", "composition": "Salbutamol 100mcg Inhaler", "price": 145.00},
+      {"name": "Duolin Inhaler", "manufacturer": "Cipla", "composition": "Ipratropium Bromide + Levosalbutamol Inhaler", "price": 180.00},
+      {"name": "Foracort Inhaler", "manufacturer": "Cipla", "composition": "Budesonide + Formoterol Inhaler", "price": 250.00},
+      {"name": "Bricanyl Turbuhaler", "manufacturer": "AstraZeneca", "composition": "Terbutaline Sulphate Turbuhaler", "price": 200.00}
+    ]
+  },
+  {
+    "name": "Crestor (Rosuvastatin)",
+    "manufacturer": "Generic",
+    "composition": "Rosuvastatin 10mg",
+    "price": 30.00,
+    "search_tag": "crestor",
+    "substitutes": [
+      {"name": "Rozavel 10", "manufacturer": "Sun Pharma", "composition": "Rosuvastatin 10mg", "price": 32.00},
+      {"name": "Rosuvas 10", "manufacturer": "Torrent Pharma", "composition": "Rosuvastatin 10mg", "price": 31.00},
+      {"name": "Rosy 10", "manufacturer": "USV Pvt Ltd", "composition": "Rosuvastatin 10mg", "price": 30.50},
+      {"name": "Novastat 10", "manufacturer": "Lupin", "composition": "Rosuvastatin 10mg", "price": 31.50},
+      {"name": "Zyrova 10", "manufacturer": "Zydus Cadila", "composition": "Rosuvastatin 10mg", "price": 33.00}
+    ]
+  },
+  {
+    "name": "Synthroid (Levothyroxine)",
+    "manufacturer": "Generic",
+    "composition": "Levothyroxine 50mcg",
+    "price": 10.00,
+    "search_tag": "synthroid",
+    "substitutes": [
+      {"name": "Eltroxin 50", "manufacturer": "GlaxoSmithKline", "composition": "Levothyroxine 50mcg", "price": 12.00},
+      {"name": "Thyronorm 50", "manufacturer": "Abbott", "composition": "Levothyroxine 50mcg", "price": 11.50},
+      {"name": "Thyrox 50", "manufacturer": "Macleods Pharma", "composition": "Levothyroxine 50mcg", "price": 10.50},
+      {"name": "Unithyrox 50", "manufacturer": "Sanofi India", "composition": "Levothyroxine 50mcg", "price": 11.00},
+      {"name": "Lethyrox 50", "manufacturer": "Merck", "composition": "Levothyroxine 50mcg", "price": 12.50}
+    ]
+  },
+  {
+    "name": "Vicodin (Hydrocodone/Acetaminophen)",
+    "manufacturer": "Generic",
+    "composition": "Hydrocodone 5mg/Acetaminophen 325mg",
+    "price": 50.00,
+    "search_tag": "vicodin",
+    "substitutes": [
+      {"name": "Norco 5/325", "manufacturer": "Actavis Pharma", "composition": "Hydrocodone 5mg/Acetaminophen 325mg", "price": 55.00},
+      {"name": "Lortab 5/325", "manufacturer": "UCB Pharma", "composition": "Hydrocodone 5mg/Acetaminophen 325mg", "price": 53.00},
+      {"name": "Zydone 5/325", "manufacturer": "Endo Pharmaceuticals", "composition": "Hydrocodone 5mg/Acetaminophen 325mg", "price": 54.00},
+      {"name": "Hydrogesic 5/325", "manufacturer": "Generic", "composition": "Hydrocodone 5mg/Acetaminophen 325mg", "price": 48.00},
+      {"name": "Co-Codamol 30/500", "manufacturer": "Generic", "composition": "Codeine 30mg/Paracetamol 500mg", "price": 40.00}
+    ]
+  },
+  {
+    "name": "Adderall (Amphetamine/Dextroamphetamine)",
+    "manufacturer": "Generic",
+    "composition": "Amphetamine/Dextroamphetamine 10mg",
+    "price": 120.00,
+    "search_tag": "adderall",
+    "substitutes": [
+      {"name": "Vyvanse 30", "manufacturer": "Takeda Pharmaceutical", "composition": "Lisdexamfetamine 30mg", "price": 150.00},
+      {"name": "Concerta 18", "manufacturer": "Janssen Pharmaceuticals", "composition": "Methylphenidate ER 18mg", "price": 130.00},
+      {"name": "Ritalin LA 20", "manufacturer": "Novartis", "composition": "Methylphenidate ER 20mg", "price": 125.00},
+      {"name": "Focalin XR 10", "manufacturer": "Novartis", "composition": "Dexmethylphenidate ER 10mg", "price": 140.00},
+      {"name": "Adhansia XR 25", "manufacturer": "Purdue Pharma", "composition": "Methylphenidate ER 25mg", "price": 160.00}
+    ]
+  },
+  {
+    "name": "Xanax (Alprazolam)",
+    "manufacturer": "Generic",
+    "composition": "Alprazolam 0.5mg",
+    "price": 25.00,
+    "search_tag": "xanax",
+    "substitutes": [
+      {"name": "Alprax 0.5", "manufacturer": "Torrent Pharma", "composition": "Alprazolam 0.5mg", "price": 27.00},
+      {"name": "Restyl 0.5", "manufacturer": "Cipla", "composition": "Alprazolam 0.5mg", "price": 26.00},
+      {"name": "Anxit 0.5", "manufacturer": "Micro Labs", "composition": "Alprazolam 0.5mg", "price": 25.50},
+      {"name": "Trikka 0.5", "manufacturer": "Unichem Laboratories", "composition": "Alprazolam 0.5mg", "price": 26.50},
+      {"name": "Alzolam 0.5", "manufacturer": "Sun Pharma", "composition": "Alprazolam 0.5mg", "price": 24.50}
+    ]
+  },
+  {
+    "name": "Zocor (Simvastatin)",
+    "manufacturer": "Generic",
+    "composition": "Simvastatin 20mg",
+    "price": 15.00,
+    "search_tag": "zocor",
+    "substitutes": [
+      {"name": "Simvotin 20", "manufacturer": "Cipla", "composition": "Simvastatin 20mg", "price": 16.00},
+      {"name": "Simcard 20", "manufacturer": "Torrent Pharma", "composition": "Simvastatin 20mg", "price": 15.50},
+      {"name": "Simvax 20", "manufacturer": "Sun Pharma", "composition": "Simvastatin 20mg", "price": 16.50},
+      {"name": "Statin 20", "manufacturer": "Micro Labs", "composition": "Simvastatin 20mg", "price": 15.80},
+      {"name": "Lipvas 20", "manufacturer": "Zydus Cadila", "composition": "Simvastatin 20mg", "price": 17.00}
+    ]
+  },
+  {
+    "name": "Wellbutrin (Bupropion)",
+    "manufacturer": "Generic",
+    "composition": "Bupropion 150mg",
+    "price": 70.00,
+    "search_tag": "wellbutrin",
+    "substitutes": [
+      {"name": "Bupron XL 150", "manufacturer": "Sun Pharma", "composition": "Bupropion 150mg XL", "price": 75.00},
+      {"name": "Zyban 150", "manufacturer": "GlaxoSmithKline", "composition": "Bupropion 150mg", "price": 80.00},
+      {"name": "Buwell 150", "manufacturer": "Cipla", "composition": "Bupropion 150mg", "price": 72.00},
+      {"name": "Elontril 150", "manufacturer": "Pierre Fabre", "composition": "Bupropion 150mg", "price": 78.00},
+      {"name": "Voxra 150", "manufacturer": "AstraZeneca", "composition": "Bupropion 150mg", "price": 76.00}
+    ]
+  },
+  {
+    "name": "Prozac (Fluoxetine)",
+    "manufacturer": "Generic",
+    "composition": "Fluoxetine 20mg",
+    "price": 28.00,
+    "search_tag": "prozac",
+    "substitutes": [
+      {"name": "Fludac 20", "manufacturer": "Cadila Healthcare", "composition": "Fluoxetine 20mg", "price": 29.00},
+      {"name": "Depzac 20", "manufacturer": "Cipla", "composition": "Fluoxetine 20mg", "price": 28.50},
+      {"name": "Oxetine 20", "manufacturer": "Sun Pharma", "composition": "Fluoxetine 20mg", "price": 29.50},
+      {"name": "Flunil 20", "manufacturer": "Intas Pharmaceuticals", "composition": "Fluoxetine 20mg", "price": 27.50},
+      {"name": "Locetin 20", "manufacturer": "Torrent Pharma", "composition": "Fluoxetine 20mg", "price": 28.20}
+    ]
+  },
+  {
+    "name": "Zestril (Lisinopril)",
+    "manufacturer": "Generic",
+    "composition": "Lisinopril 10mg",
+    "price": 25.00,
+    "search_tag": "zestril",
+    "substitutes": [
+      {"name": "Listril 10", "manufacturer": "Torrent Pharma", "composition": "Lisinopril 10mg", "price": 26.00},
+      {"name": "Prinivil 10", "manufacturer": "MSD Pharmaceuticals", "composition": "Lisinopril 10mg", "price": 29.00},
+      {"name": "Lisinorm 10", "manufacturer": "IPCA Laboratories", "composition": "Lisinopril 10mg", "price": 25.50},
+      {"name": "Hipril 10", "manufacturer": "Cipla", "composition": "Lisinopril 10mg", "price": 27.00},
+      {"name": "Aceprin 10", "manufacturer": "Abbott", "composition": "Lisinopril 10mg", "price": 27.50}
+    ]
+  },
+  {
+    "name": "Zoloft (Sertraline)",
+    "manufacturer": "Generic",
+    "composition": "Sertraline 50mg",
+    "price": 60.00,
+    "search_tag": "zoloft",
+    "substitutes": [
+      {"name": "Serlift 50", "manufacturer": "Cipla", "composition": "Sertraline 50mg", "price": 58.00},
+      {"name": "Sertra 50", "manufacturer": "Intas Pharmaceuticals", "composition": "Sertraline 50mg", "price": 59.00},
+      {"name": "Depralin 50", "manufacturer": "Torrent Pharma", "composition": "Sertraline 50mg", "price": 61.00},
+      {"name": "Seralin 50", "manufacturer": "Sun Pharma", "composition": "Sertraline 50mg", "price": 60.50},
+      {"name": "Certral 50", "manufacturer": "Lupin", "composition": "Sertraline 50mg", "price": 57.50}
+    ]
+  },
+  {
+    "name": "Ambien (Zolpidem)",
+    "manufacturer": "Generic",
+    "composition": "Zolpidem 10mg",
+    "price": 40.00,
+    "search_tag": "ambien",
+    "substitutes": [
+      {"name": "Zolfresh 10", "manufacturer": "Abbott", "composition": "Zolpidem 10mg", "price": 45.00},
+      {"name": "Nitrest 10", "manufacturer": "Sun Pharma", "composition": "Zolpidem 10mg", "price": 42.00},
+      {"name": "Zolpid 10", "manufacturer": "Cipla", "composition": "Zolpidem 10mg", "price": 41.00},
+      {"name": "Stilnox 10", "manufacturer": "Sanofi", "composition": "Zolpidem 10mg", "price": 55.00},
+      {"name": "Zleep 10", "manufacturer": "Torrent Pharma", "composition": "Zolpidem 10mg", "price": 43.00}
+    ]
+  },
+  {
+    "name": "Plavix (Clopidogrel)",
+    "manufacturer": "Generic",
+    "composition": "Clopidogrel 75mg",
+    "price": 25.00,
+    "search_tag": "plavix",
+    "substitutes": [
+      {"name": "Clopilet 75", "manufacturer": "Cipla", "composition": "Clopidogrel 75mg", "price": 27.00},
+      {"name": "Clopivas 75", "manufacturer": "Torrent Pharma", "composition": "Clopidogrel 75mg", "price": 26.00},
+      {"name": "Deplatt 75", "manufacturer": "Macleods Pharma", "composition": "Clopidogrel 75mg", "price": 26.50},
+      {"name": "Clopirel 75", "manufacturer": "Sun Pharma", "composition": "Clopidogrel 75mg", "price": 25.50},
+      {"name": "Antiplat 75", "manufacturer": "Generic", "composition": "Clopidogrel 75mg", "price": 24.00}
+    ]
+  },
+  {
+    "name": "Prilosec (Omeprazole)",
+    "manufacturer": "Generic",
+    "composition": "Omeprazole 20mg",
+    "price": 15.00,
+    "search_tag": "prilosec",
+    "substitutes": [
+      {"name": "Omez 20", "manufacturer": "Dr. Reddy's Laboratories", "composition": "Omeprazole 20mg", "price": 16.00},
+      {"name": "Ocid 20", "manufacturer": "Zydus Cadila", "composition": "Omeprazole 20mg", "price": 15.50},
+      {"name": "Losec 20", "manufacturer": "AstraZeneca", "composition": "Omeprazole 20mg", "price": 18.00},
+      {"name": "Peezee 20", "manufacturer": "Cipla", "composition": "Omeprazole 20mg", "price": 14.80},
+      {"name": "Omecip 20", "manufacturer": "Cipla", "composition": "Omeprazole 20mg", "price": 15.20}
+    ]
+  },
+  {
+    "name": "Cymbalta (Duloxetine)",
+    "manufacturer": "Generic",
+    "composition": "Duloxetine 30mg",
+    "price": 70.00,
+    "search_tag": "cymbalta",
+    "substitutes": [
+      {"name": "Duloxet 30", "manufacturer": "Sun Pharma", "composition": "Duloxetine 30mg", "price": 75.00},
+      {"name": "Dulojoy 30", "manufacturer": "Torrent Pharma", "composition": "Duloxetine 30mg", "price": 72.00},
+      {"name": "Dulzide 30", "manufacturer": "Cipla", "composition": "Duloxetine 30mg", "price": 71.00},
+      {"name": "Dutine 30", "manufacturer": "Lupin", "composition": "Duloxetine 30mg", "price": 73.00},
+      {"name": "Symbal 30", "manufacturer": "Micro Labs", "composition": "Duloxetine 30mg", "price": 70.50}
+    ]
+  },
+  {
+    "name": "Lexapro (Escitalopram)",
+    "manufacturer": "Generic",
+    "composition": "Escitalopram 10mg",
+    "price": 35.00,
+    "search_tag": "lexapro",
+    "substitutes": [
+      {"name": "Nexito 10", "manufacturer": "Sun Pharma", "composition": "Escitalopram 10mg", "price": 38.00},
+      {"name": "Espram 10", "manufacturer": "Torrent Pharma", "composition": "Escitalopram 10mg", "price": 36.00},
+      {"name": "Cipralex 10", "manufacturer": "Lundbeck", "composition": "Escitalopram 10mg", "price": 50.00},
+      {"name": "S-Citadep 10", "manufacturer": "Cipla", "composition": "Escitalopram 10mg", "price": 37.00},
+      {"name": "Eslop 10", "manufacturer": "Micro Labs", "composition": "Escitalopram 10mg", "price": 35.50}
+    ]
+  },
+  {
+    "name": "Lyrica (Pregabalin)",
+    "manufacturer": "Generic",
+    "composition": "Pregabalin 75mg",
+    "price": 45.00,
+    "search_tag": "lyrica",
+    "substitutes": [
+      {"name": "Pregalin 75", "manufacturer": "Torrent Pharma", "composition": "Pregabalin 75mg", "price": 48.00},
+      {"name": "Nervigen 75", "manufacturer": "Sun Pharma", "composition": "Pregabalin 75mg", "price": 46.00},
+      {"name": "Gabapentin 75", "manufacturer": "Generic", "composition": "Pregabalin 75mg", "price": 44.00},
+      {"name": "Maxgaba 75", "manufacturer": "Cipla", "composition": "Pregabalin 75mg", "price": 47.00},
+      {"name": "Neugaba 75", "manufacturer": "Intas Pharmaceuticals", "composition": "Pregabalin 75mg", "price": 45.50}
+    ]
+  },
+  {
+    "name": "Singulair (Montelukast)",
+    "manufacturer": "Generic",
+    "composition": "Montelukast 10mg",
+    "price": 22.00,
+    "search_tag": "singulair",
+    "substitutes": [
+      {"name": "Montair 10", "manufacturer": "Cipla", "composition": "Montelukast 10mg", "price": 25.00},
+      {"name": "Montek 10", "manufacturer": "Sun Pharma", "composition": "Montelukast 10mg", "price": 23.00},
+      {"name": "L-Montus 10", "manufacturer": "Macleods Pharma", "composition": "Montelukast 10mg", "price": 24.00},
+      {"name": "Telekast 10", "manufacturer": "Lupin", "composition": "Montelukast 10mg", "price": 23.50},
+      {"name": "Monticope 10", "manufacturer": "Mankind Pharma", "composition": "Montelukast 10mg", "price": 24.50}
+    ]
+  },
+  {
+    "name": "Flomax (Tamsulosin)",
+    "manufacturer": "Generic",
+    "composition": "Tamsulosin 0.4mg",
+    "price": 30.00,
+    "search_tag": "flomax",
+    "substitutes": [
+      {"name": "Tamflo 0.4", "manufacturer": "Cipla", "composition": "Tamsulosin 0.4mg", "price": 32.00},
+      {"name": "Urimax 0.4", "manufacturer": "Cipla", "composition": "Tamsulosin 0.4mg", "price": 31.00},
+      {"name": "Contiflo OD 0.4", "manufacturer": "Sun Pharma", "composition": "Tamsulosin 0.4mg", "price": 33.00},
+      {"name": "Veltam 0.4", "manufacturer": "Intas Pharmaceuticals", "composition": "Tamsulosin 0.4mg", "price": 31.50},
+      {"name": "Tamprost 0.4", "manufacturer": "Torrent Pharma", "composition": "Tamsulosin 0.4mg", "price": 30.50}
+    ]
+  },
+  {
+    "name": "Concerta (Methylphenidate)",
+    "manufacturer": "Generic",
+    "composition": "Methylphenidate ER 18mg",
+    "price": 100.00,
+    "search_tag": "concerta",
+    "substitutes": [
+      {"name": "Ritalin LA 20", "manufacturer": "Novartis", "composition": "Methylphenidate ER 20mg", "price": 105.00},
+      {"name": "Inspire 18", "manufacturer": "Sun Pharma", "composition": "Methylphenidate ER 18mg", "price": 98.00},
+      {"name": "Medikinet CR 10", "manufacturer": "Medice", "composition": "Methylphenidate ER 10mg", "price": 90.00},
+      {"name": "Attentrol 18", "manufacturer": "Cipla", "composition": "Methylphenidate ER 18mg", "price": 102.00},
+      {"name": "Methylox 18", "manufacturer": "Torrent Pharma", "composition": "Methylphenidate ER 18mg", "price": 99.00}
+    ]
+  },
+  {
+    "name": "Dilantin (Phenytoin)",
+    "manufacturer": "Generic",
+    "composition": "Phenytoin 100mg",
+    "price": 15.00,
+    "search_tag": "dilantin",
+    "substitutes": [
+      {"name": "Eptoin 100", "manufacturer": "Abbott", "composition": "Phenytoin 100mg", "price": 17.00},
+      {"name": "Phenykem 100", "manufacturer": "Alkem Laboratories", "composition": "Phenytoin 100mg", "price": 16.00},
+      {"name": "Phenytoin Sodium 100", "manufacturer": "Generic", "composition": "Phenytoin Sodium 100mg", "price": 14.50},
+      {"name": "Epileptin 100", "manufacturer": "Cipla", "composition": "Phenytoin 100mg", "price": 16.50},
+      {"name": "Hydantoin 100", "manufacturer": "Sun Pharma", "composition": "Phenytoin 100mg", "price": 15.50}
+    ]
+  },
+  {
+    "name": "Effexor (Venlafaxine)",
+    "manufacturer": "Generic",
+    "composition": "Venlafaxine 75mg",
+    "price": 50.00,
+    "search_tag": "effexor",
+    "substitutes": [
+      {"name": "Venlor 75", "manufacturer": "Cipla", "composition": "Venlafaxine 75mg", "price": 52.00},
+      {"name": "Veniz 75", "manufacturer": "Sun Pharma", "composition": "Venlafaxine 75mg", "price": 51.00},
+      {"name": "Venlafax ER 75", "manufacturer": "Generic", "composition": "Venlafaxine ER 75mg", "price": 48.00},
+      {"name": "Vizylac 75", "manufacturer": "Torrent Pharma", "composition": "Venlafaxine 75mg", "price": 50.50},
+      {"name": "Flavel 75", "manufacturer": "Intas Pharmaceuticals", "composition": "Venlafaxine 75mg", "price": 49.50}
+    ]
+  },
+  {
+    "name": "Klonopin (Clonazepam)",
+    "manufacturer": "Generic",
+    "composition": "Clonazepam 0.5mg",
+    "price": 12.00,
+    "search_tag": "klonopin",
+    "substitutes": [
+      {"name": "Rivotril 0.5", "manufacturer": "Roche", "composition": "Clonazepam 0.5mg", "price": 20.00},
+      {"name": "Clonotril 0.5", "manufacturer": "Torrent Pharma", "composition": "Clonazepam 0.5mg", "price": 13.00},
+      {"name": "Zapiz 0.5", "manufacturer": "Intas Pharmaceuticals", "composition": "Clonazepam 0.5mg", "price": 12.50},
+      {"name": "Lonazep 0.5", "manufacturer": "Sun Pharma", "composition": "Clonazepam 0.5mg", "price": 12.80},
+      {"name": "Clozam 0.5", "manufacturer": "Cipla", "composition": "Clonazepam 0.5mg", "price": 12.20}
+    ]
+  },
+  {
+    "name": "Lamictal (Lamotrigine)",
+    "manufacturer": "Generic",
+    "composition": "Lamotrigine 100mg",
+    "price": 60.00,
+    "search_tag": "lamictal",
+    "substitutes": [
+      {"name": "Lamitor 100", "manufacturer": "Cipla", "composition": "Lamotrigine 100mg", "price": 62.00},
+      {"name": "Lamez 100", "manufacturer": "Sun Pharma", "composition": "Lamotrigine 100mg", "price": 61.00},
+      {"name": "Lametec 100", "manufacturer": "Torrent Pharma", "composition": "Lamotrigine 100mg", "price": 60.50},
+      {"name": "Lamika 100", "manufacturer": "Intas Pharmaceuticals", "composition": "Lamotrigine 100mg", "price": 61.50},
+      {"name": "Lamogine 100", "manufacturer": "Macleods Pharma", "composition": "Lamotrigine 100mg", "price": 59.50}
+    ]
+  },
+  {
+    "name": "Topamax (Topiramate)",
+    "manufacturer": "Generic",
+    "composition": "Topiramate 50mg",
+    "price": 40.00,
+    "search_tag": "topamax",
+    "substitutes": [
+      {"name": "Topamac 50", "manufacturer": "Janssen Pharmaceuticals", "composition": "Topiramate 50mg", "price": 55.00},
+      {"name": "Topirol 50", "manufacturer": "Sun Pharma", "composition": "Topiramate 50mg", "price": 42.00},
+      {"name": "Topirate 50", "manufacturer": "Cipla", "composition": "Topiramate 50mg", "price": 41.00},
+      {"name": "Nextop 50", "manufacturer": "Torrent Pharma", "composition": "Topiramate 50mg", "price": 40.50},
+      {"name": "Epimate 50", "manufacturer": "Micro Labs", "composition": "Topiramate 50mg", "price": 41.50}
+    ]
+  },
+  {
+    "name": "Zantac (Ranitidine)",
+    "manufacturer": "Generic",
+    "composition": "Ranitidine 150mg",
+    "price": 5.00,
+    "search_tag": "zantac",
+    "substitutes": [
+      {"name": "Aciloc 150", "manufacturer": "Cadila Healthcare", "composition": "Ranitidine 150mg", "price": 6.00},
+      {"name": "Rantac 150", "manufacturer": "J B Chemicals", "composition": "Ranitidine 150mg", "price": 5.50},
+      {"name": "Razo 150", "manufacturer": "Dr. Reddy's Laboratories", "composition": "Ranitidine 150mg", "price": 6.50},
+      {"name": "Peptiran 150", "manufacturer": "Sun Pharma", "composition": "Ranitidine 150mg", "price": 5.80},
+      {"name": "Histac 150", "manufacturer": "Sun Pharma", "composition": "Ranitidine 150mg", "price": 6.20}
+    ]
+  },
+  {
+    "name": "Coreg (Carvedilol)",
+    "manufacturer": "Generic",
+    "composition": "Carvedilol 6.25mg",
+    "price": 20.00,
+    "search_tag": "coreg",
+    "substitutes": [
+      {"name": "Carvil 6.25", "manufacturer": "Cipla", "composition": "Carvedilol 6.25mg", "price": 22.00},
+      {"name": "Carca 6.25", "manufacturer": "Sun Pharma", "composition": "Carvedilol 6.25mg", "price": 21.00},
+      {"name": "Cardivas 6.25", "manufacturer": "Torrent Pharma", "composition": "Carvedilol 6.25mg", "price": 20.50},
+      {"name": "Carzec 6.25", "manufacturer": "Macleods Pharma", "composition": "Carvedilol 6.25mg", "price": 21.50},
+      {"name": "Carvedil 6.25", "manufacturer": "Generic", "composition": "Carvedilol 6.25mg", "price": 19.50}
+    ]
+  },
+  {
+    "name": "Diovan (Valsartan)",
+    "manufacturer": "Generic",
+    "composition": "Valsartan 80mg",
+    "price": 40.00,
+    "search_tag": "diovan",
+    "substitutes": [
+      {"name": "Valzaar 80", "manufacturer": "Torrent Pharma", "composition": "Valsartan 80mg", "price": 42.00},
+      {"name": "Starval 80", "manufacturer": "Lupin", "composition": "Valsartan 80mg", "price": 41.00},
+      {"name": "Valisure 80", "manufacturer": "Cipla", "composition": "Valsartan 80mg", "price": 40.50},
+      {"name": "Cardioval 80", "manufacturer": "Sun Pharma", "composition": "Valsartan 80mg", "price": 41.50},
+      {"name": "Valsacard 80", "manufacturer": "Mankind Pharma", "composition": "Valsartan 80mg", "price": 39.50}
+    ]
+  },
+  {
+    "name": "Nexium (Esomeprazole)",
+    "manufacturer": "Generic",
+    "composition": "Esomeprazole 40mg",
+    "price": 25.00,
+    "search_tag": "nexium",
+    "substitutes": [
+      {"name": "Esomep 40", "manufacturer": "Sun Pharma", "composition": "Esomeprazole 40mg", "price": 27.00},
+      {"name": "Esomac 40", "manufacturer": "Cipla", "composition": "Esomeprazole 40mg", "price": 26.00},
+      {"name": "Neksium 40", "manufacturer": "AstraZeneca", "composition": "Esomeprazole 40mg", "price": 35.00},
+      {"name": "Raciper 40", "manufacturer": "Dr. Reddy's Laboratories", "composition": "Esomeprazole 40mg", "price": 26.50},
+      {"name": "Esogard 40", "manufacturer": "Micro Labs", "composition": "Esomeprazole 40mg", "price": 25.50}
+    ]
+  },
+  {
+    "name": "Advair (Fluticasone/Salmeterol)",
+    "manufacturer": "Generic",
+    "composition": "Fluticasone 250mcg/Salmeterol 50mcg Inhaler",
+    "price": 300.00,
+    "search_tag": "advair",
+    "substitutes": [
+      {"name": "Seroflo 250", "manufacturer": "Cipla", "composition": "Fluticasone 250mcg/Salmeterol 50mcg Inhaler", "price": 280.00},
+      {"name": "Foracort 200", "manufacturer": "Cipla", "composition": "Budesonide 200mcg/Formoterol 6mcg Inhaler", "price": 250.00},
+      {"name": "Combitide 250", "manufacturer": "Sun Pharma", "composition": "Fluticasone 250mcg/Salmeterol 50mcg Inhaler", "price": 290.00},
+      {"name": "Airtec-S 250", "manufacturer": "Glenmark Pharmaceuticals", "composition": "Fluticasone 250mcg/Salmeterol 50mcg Inhaler", "price": 285.00},
+      {"name": "Maxiflo 250", "manufacturer": "Macleods Pharma", "composition": "Fluticasone 250mcg/Formoterol 10mcg Inhaler", "price": 270.00}
+    ]
+  },
+  {
+    "name": "Novolog (Insulin Aspart)",
+    "manufacturer": "Generic",
+    "composition": "Insulin Aspart 100 units/ml",
+    "price": 500.00,
+    "search_tag": "novolog",
+    "substitutes": [
+      {"name": "Novorapid Flexpen", "manufacturer": "Novo Nordisk", "composition": "Insulin Aspart 100 units/ml", "price": 550.00},
+      {"name": "Humalog Kwikpen", "manufacturer": "Eli Lilly", "composition": "Insulin Lispro 100 units/ml", "price": 560.00},
+      {"name": "Apidra Solostar", "manufacturer": "Sanofi", "composition": "Insulin Glulisine 100 units/ml", "price": 540.00},
+      {"name": "Lispro 100 IU", "manufacturer": "Generic", "composition": "Insulin Lispro 100 units/ml", "price": 480.00},
+      {"name": "Actrapid Flexpen", "manufacturer": "Novo Nordisk", "composition": "Insulin Human 100 units/ml", "price": 400.00}
+    ]
+  },
+  {
+    "name": "Lantus (Insulin Glargine)",
+    "manufacturer": "Generic",
+    "composition": "Insulin Glargine 100 units/ml",
+    "price": 600.00,
+    "search_tag": "lantus",
+    "substitutes": [
+      {"name": "Toujeo Solostar", "manufacturer": "Sanofi", "composition": "Insulin Glargine 300 units/ml", "price": 700.00},
+      {"name": "Basaglar Kwikpen", "manufacturer": "Eli Lilly", "composition": "Insulin Glargine 100 units/ml", "price": 580.00},
+      {"name": "Abasaglar Kwikpen", "manufacturer": "Eli Lilly", "composition": "Insulin Glargine 100 units/ml", "price": 590.00},
+      {"name": "Glaritus Cartridge", "manufacturer": "Biocon", "composition": "Insulin Glargine 100 units/ml", "price": 550.00},
+      {"name": "Basalin Pen", "manufacturer": "Wockhardt", "composition": "Insulin Glargine 100 units/ml", "price": 560.00}
+    ]
+  },
+  {
+    "name": "Humalog (Insulin Lispro)",
+    "manufacturer": "Generic",
+    "composition": "Insulin Lispro 100 units/ml",
+    "price": 520.00,
+    "search_tag": "humalog",
+    "substitutes": [
+      {"name": "Novorapid Flexpen", "manufacturer": "Novo Nordisk", "composition": "Insulin Aspart 100 units/ml", "price": 550.00},
+      {"name": "Apidra Solostar", "manufacturer": "Sanofi", "composition": "Insulin Glulisine 100 units/ml", "price": 540.00},
+      {"name": "Lispro 100 IU", "manufacturer": "Generic", "composition": "Insulin Lispro 100 units/ml", "price": 480.00},
+      {"name": "Fiasp FlexTouch", "manufacturer": "Novo Nordisk", "composition": "Insulin Aspart (faster acting) 100 units/ml", "price": 580.00},
+      {"name": "Admelog Solostar", "manufacturer": "Sanofi", "composition": "Insulin Lispro 100 units/ml", "price": 500.00}
+    ]
+  },
+  {
+    "name": "Januvia (Sitagliptin)",
+    "manufacturer": "Generic",
+    "composition": "Sitagliptin 100mg",
+    "price": 80.00,
+    "search_tag": "januvia",
+    "substitutes": [
+      {"name": "Istamet 50/500", "manufacturer": "MSD Pharmaceuticals", "composition": "Sitagliptin 50mg/Metformin 500mg", "price": 90.00},
+      {"name": "Janumet 50/500", "manufacturer": "MSD Pharmaceuticals", "composition": "Sitagliptin 50mg/Metformin 500mg", "price": 92.00},
+      {"name": "Sitagliptin 100", "manufacturer": "Generic", "composition": "Sitagliptin 100mg", "price": 75.00},
+      {"name": "Zita 100", "manufacturer": "Glenmark Pharmaceuticals", "composition": "Sitagliptin 100mg", "price": 82.00},
+      {"name": "Tenglyn 20", "manufacturer": "Zydus Cadila", "composition": "Teneligliptin 20mg", "price": 70.00}
+    ]
+  },
+  {
+    "name": "Tradame (Tramadol)",
+    "manufacturer": "Generic",
+    "composition": "Tramadol 50mg",
+    "price": 20.00,
+    "search_tag": "tradame",
+    "substitutes": [
+      {"name": "Contramal 50", "manufacturer": "Grünenthal", "composition": "Tramadol 50mg", "price": 25.00},
+      {"name": "Tramacip 50", "manufacturer": "Cipla", "composition": "Tramadol 50mg", "price": 21.00},
+      {"name": "Ultram 50", "manufacturer": "Johnson & Johnson", "composition": "Tramadol 50mg", "price": 30.00},
+      {"name": "Tramazac 50", "manufacturer": "Zydus Cadila", "composition": "Tramadol 50mg", "price": 20.50},
+      {"name": "Dolol 50", "manufacturer": "Sun Pharma", "composition": "Tramadol 50mg", "price": 21.50}
+    ]
+  },
+  {
+    "name": "Cialis (Tadalafil)",
+    "manufacturer": "Generic",
+    "composition": "Tadalafil 20mg",
+    "price": 150.00,
+    "search_tag": "cialis",
+    "substitutes": [
+      {"name": "Tadacip 20", "manufacturer": "Cipla", "composition": "Tadalafil 20mg", "price": 120.00},
+      {"name": "Erectafil 20", "manufacturer": "Sun Pharma", "composition": "Tadalafil 20mg", "price": 125.00},
+      {"name": "Forzest 20", "manufacturer": "Torrent Pharma", "composition": "Tadalafil 20mg", "price": 130.00},
+      {"name": "Megalis 20", "manufacturer": "Macleods Pharma", "composition": "Tadalafil 20mg", "price": 115.00},
+      {"name": "Uplift 20", "manufacturer": "Zydus Cadila", "composition": "Tadalafil 20mg", "price": 118.00}
+    ]
+  },
+  {
+    "name": "Viagra (Sildenafil)",
+    "manufacturer": "Generic",
+    "composition": "Sildenafil 50mg",
+    "price": 100.00,
+    "search_tag": "viagra",
+    "substitutes": [
+      {"name": "Eriacta 50", "manufacturer": "Ranbaxy", "composition": "Sildenafil 50mg", "price": 80.00},
+      {"name": "Penegra 50", "manufacturer": "Zydus Cadila", "composition": "Sildenafil 50mg", "price": 85.00},
+      {"name": "Manforce 50", "manufacturer": "Mankind Pharma", "composition": "Sildenafil 50mg", "price": 75.00},
+      {"name": "Silagra 50", "manufacturer": "Cipla", "composition": "Sildenafil 50mg", "price": 78.00},
+      {"name": "Kamagra 50", "manufacturer": "Ajanta Pharma", "composition": "Sildenafil 50mg", "price": 70.00}
+    ]
+  }
+]

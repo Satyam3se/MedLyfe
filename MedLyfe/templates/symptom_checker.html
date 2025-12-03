@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}MedLyfe | AI Symptom Checker{% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/symptom_checker.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="symptom-checker-container">
+    <div class="symptom-header">
+        <h1>AI Symptom Checker</h1>
+        <p>Select the symptoms you are experiencing for a preliminary analysis.</p>
+    </div>
+
+    <div class="disclaimer">
+        <strong>Disclaimer:</strong> This tool is for informational purposes only and is not a substitute for professional medical advice. Always consult a doctor.
+    </div>
+
+    <form method="POST" action="{% url 'symptom_checker' %}">
+        {% csrf_token %}
+        <div class="symptom-selection-area">
+            <h3>Select Your Symptoms</h3>
+            
+            <div class="search-bar-wrapper">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" id="symptomSearch" placeholder="Search for a symptom...">
+            </div>
+
+            <div class="symptoms-grid">
+                {% for symptom in all_symptoms %}
+                <div class="symptom-tag">
+                    <input 
+                        type="checkbox" 
+                        name="symptom_ids" 
+                        value="{{ symptom.id }}" 
+                        id="symptom_{{ symptom.id }}"
+                        {% if symptom.id in selected_ids %}checked{% endif %}
+                    >
+                    <label for="symptom_{{ symptom.id }}">{{ symptom.name }}</label>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="submit-symptoms">
+            <button type="submit" class="submit-btn">Analyze Symptoms</button>
+        </div>
+    </form>
+
+    {% if results %}
+    <div class="results-section">
+        <h2 class="results-header">Possible Conditions</h2>
+        {% for disease in results %}
+        <div class="disease-card">
+            <div class="disease-card-header">
+                <h4>{{ disease.name }}</h4>
+                <span class="match-badge">{{ disease.symptom_match_count }} Symptom{{ disease.symptom_match_count|pluralize }} Matched</span>
+            </div>
+            <p><strong>Description:</strong> {{ disease.description }}</p>
+            
+            <div class="precautions">
+                <h5>Precautions & Advice</h5>
+                <p>{{ disease.precautions|linebreaksbr }}</p>
+            </div>
+        </div>
+        {% empty %}
+            <p class="text-center">No matching conditions found based on your selection.</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('symptomSearch');
+    const symptomTags = document.querySelectorAll('.symptom-tag');
+
+    searchInput.addEventListener('keyup', function() {
+        const searchTerm = searchInput.value.toLowerCase();
+
+        symptomTags.forEach(function(tag) {
+            const label = tag.querySelector('label');
+            const labelText = label.textContent.toLowerCase();
+
+            if (labelText.includes(searchTerm)) {
+                tag.style.display = 'flex';
+            } else {
+                tag.style.display = 'none';
+            }
+        });
+    });
+});
+</script>
+{% endblock %}

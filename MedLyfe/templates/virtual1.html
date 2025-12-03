@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Virtual Call | MedLyfe{% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/virtual1.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="call-container">
+    <div class="video-grid">
+        <div class="video-player" id="remote-video">
+            <!-- Remote video stream will be placed here -->
+            <p>Waiting for participant...</p>
+        </div>
+        <div class="video-player" id="local-video">
+            <!-- Local video stream will be placed here -->
+            <p>Your Camera</p>
+        </div>
+    </div>
+
+    <div class="call-controls">
+        <button id="mic-toggle" class="control-btn"><i class="fas fa-microphone"></i></button>
+        <button id="video-toggle" class="control-btn"><i class="fas fa-video"></i></button>
+        <button id="hangup-btn" class="control-btn hangup"><i class="fas fa-phone-slash"></i></button>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Placeholder for WebRTC logic
+    const localVideo = document.getElementById('local-video');
+    const remoteVideo = document.getElementById('remote-video');
+    const micToggle = document.getElementById('mic-toggle');
+    const videoToggle = document.getElementById('video-toggle');
+    const hangupBtn = document.getElementById('hangup-btn');
+
+    let localStream;
+    let isMicOn = true;
+    let isVideoOn = true;
+
+    // Function to start local media stream
+    async function startLocalStream() {
+        try {
+            localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+            localVideo.srcObject = localStream;
+            localVideo.querySelector('p').style.display = 'none'; // Hide placeholder text
+        } catch (error) {
+            console.error('Error accessing media devices:', error);
+            alert('Could not access camera and microphone. Please ensure permissions are granted.');
+        }
+    }
+
+    // Toggle microphone
+    micToggle.addEventListener('click', () => {
+        isMicOn = !isMicOn;
+        localStream.getAudioTracks().forEach(track => track.enabled = isMicOn);
+        micToggle.querySelector('i').classList.toggle('fa-microphone-slash', !isMicOn);
+        micToggle.querySelector('i').classList.toggle('fa-microphone', isMicOn);
+    });
+
+    // Toggle video
+    videoToggle.addEventListener('click', () => {
+        isVideoOn = !isVideoOn;
+        localStream.getVideoTracks().forEach(track => track.enabled = isVideoOn);
+        videoToggle.querySelector('i').classList.toggle('fa-video-slash', !isVideoOn);
+        videoToggle.querySelector('i').classList.toggle('fa-video', isVideoOn);
+    });
+
+    // Hang up call
+    hangupBtn.addEventListener('click', () => {
+        if (localStream) {
+            localStream.getTracks().forEach(track => track.stop());
+        }
+        alert('Call ended. (This is a placeholder. Actual call ending logic would be here.)');
+        window.location.href = '/'; // Redirect to home or previous page
+    });
+
+    // Start local stream when page loads
+    startLocalStream();
+
+    // In a real application, WebRTC peer connection logic would go here
+    // to connect to a signaling server and exchange SDP offers/answers and ICE candidates.
+</script>
+{% endblock %}

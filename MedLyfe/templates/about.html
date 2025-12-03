@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}About Us - MedLyfe{% endblock %}
+
+{% block extra_css %}
+<style>
+    .about-us-container {
+        padding: 40px 20px;
+        max-width: 900px;
+        margin: 40px auto;
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        font-family: 'Arial', sans-serif;
+        color: #333;
+        line-height: 1.6;
+    }
+
+    .about-us-container h1 {
+        color: #2c3e50;
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 2.5em;
+        font-weight: 700;
+    }
+
+    .about-us-container h2 {
+        color: #34495e;
+        margin-top: 30px;
+        margin-bottom: 15px;
+        font-size: 1.8em;
+        font-weight: 600;
+        border-bottom: 2px solid #ecf0f1;
+        padding-bottom: 10px;
+    }
+
+    .about-us-container p {
+        margin-bottom: 15px;
+        font-size: 1.1em;
+    }
+
+    .about-us-container ul {
+        list-style-type: disc;
+        margin-left: 25px;
+        margin-bottom: 15px;
+    }
+
+    .about-us-container ul li {
+        margin-bottom: 8px;
+        font-size: 1.1em;
+    }
+
+    .team-section {
+        text-align: center;
+        margin-top: 50px;
+    }
+
+    .team-section h2 {
+        border-bottom: none;
+    }
+
+    .team-members {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 30px;
+        margin-top: 30px;
+    }
+
+    .team-member {
+        background-color: #f8f9fa;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        width: 250px;
+        text-align: center;
+    }
+
+    .team-member img {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 15px;
+        border: 3px solid #3498db;
+    }
+
+    .team-member h3 {
+        color: #2c3e50;
+        font-size: 1.4em;
+        margin-bottom: 5px;
+    }
+
+    .team-member p {
+        font-size: 0.95em;
+        color: #7f8c8d;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="about-us-container">
+    <h1>About MedLyfe</h1>
+    <p>Welcome to MedLyfe, your dedicated partner in health and wellness. We believe that everyone deserves easy, reliable, and comprehensive access to healthcare information and services. Our mission is to simplify healthcare by providing intuitive tools and resources that empower you to take control of your health journey.</p>
+
+    <h2>Our Vision</h2>
+    <p>To create a healthier world by making personalized healthcare accessible and understandable for everyone, everywhere.</p>
+
+    <h2>What We Offer</h2>
+    <ul>
+        <li><strong>Symptom Checker:</strong> Get immediate insights into potential conditions based on your symptoms.</li>
+        <li><strong>Medicine Substitute Finder:</strong> Find affordable and effective alternatives for your prescribed medications.</li>
+        <li><strong>Virtual Consultations:</strong> Connect with healthcare professionals from the comfort of your home.</li>
+        <li><strong>Health Tracker:</strong> Monitor your vital health metrics, track prescriptions, set goals, and manage your diet and activity.</li>
+        <li><strong>Appointment Management:</strong> Easily schedule and manage your medical appointments.</li>
+        <li><strong>Government Schemes:</strong> Information on various government health initiatives and schemes to help you access benefits.</li>
+    </ul>
+
+    <h2>Our Commitment</h2>
+    <p>At MedLyfe, your health and privacy are our top priorities. We are committed to:</p>
+    <ul>
+        <li>Providing accurate and up-to-date health information.</li>
+        <li>Ensuring the security and confidentiality of your personal health data.</li>
+        <li>Continuously improving our platform based on user feedback and technological advancements.</li>
+        <li>Promoting a holistic approach to health, encompassing physical and mental well-being.</li>
+    </ul>
+
+
+
+    <p>Thank you for choosing MedLyfe. We look forward to supporting you on your journey to better health.</p>
+</div>
+{% endblock %}

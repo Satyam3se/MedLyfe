@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}MedLyfe | Home{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<!-- ===== Hero Section ===== -->
+<section class="hero">
+  <h1>Welcome to MedLyfe</h1>
+  <p>Your one-stop platform for smarter healthcare management.</p>
+  <a href="{% url 'virtual' %}">
+    <button class="btn-primary">Book Virtual Consultation</button>
+  </a>
+</section>
+
+<!-- ===== Doctors Section ===== -->
+<section class="doctors-section">
+  <h2>Our Trusted Doctors</h2>
+
+  <div class="doctors-grid">
+
+    <div class="doctor-card">
+      <img src="{% static 'images/doctor1.jpg' %}" alt="Dr. Sharma" class="doctor-img">
+      <h3>Dr. Ankit Sharma</h3>
+      <p>Cardiologist | 8 Years Experience</p>
+      <a href="{% url 'virtual' %}">
+        <button class="btn-secondary">Consult Now</button>
+      </a>
+    </div>
+
+    <div class="doctor-card">
+      <img src="{% static 'images/doctor2.jpg' %}" alt="Dr. Mehta" class="doctor-img">
+      <h3>Dr. Riya Mehta</h3>
+      <p>Dermatologist | 5 Years Experience</p>
+      <a href="{% url 'virtual' %}">
+        <button class="btn-secondary">Consult Now</button>
+      </a>
+    </div>
+
+    <div class="doctor-card">
+      <img src="{% static 'images/doctor3.jpg' %}" alt="Dr. Patel" class="doctor-img">
+      <h3>Dr. Aarav Patel</h3>
+      <p>General Physician | 10 Years Experience</p>
+      <a href="{% url 'virtual' %}">
+        <button class="btn-secondary">Consult Now</button>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== Services Section ===== -->
+<section class="doctors-section">
+  <h2>Our Key Services</h2>
+
+  <div class="doctors-grid">
+    <div class="doctor-card">
+      <i class="fa-solid fa-pills fa-3x" style="color:#007bff; margin-bottom:10px;"></i>
+      <h3>Medicine Substitution</h3>
+      <p>Find affordable alternatives to your prescribed medicines instantly.</p>
+      <a href="{% url 'substitute' %}">
+        <button class="btn-secondary">Find Now</button>
+      </a>
+    </div>
+
+    <div class="doctor-card">
+      <i class="fa-solid fa-video fa-3x" style="color:#007bff; margin-bottom:10px;"></i>
+      <h3>Virtual Consultation</h3>
+      <p>Connect with qualified doctors through secure video calls.</p>
+      <a href="{% url 'virtual' %}">
+        <button class="btn-secondary">Book Now</button>
+      </a>
+    </div>
+
+    <div class="doctor-card">
+      <i class="fa-solid fa-hand-holding-heart fa-3x" style="color:#007bff; margin-bottom:10px;"></i>
+      <h3>Fund Raising</h3>
+      <p>Raise funds for medical treatment or contribute to health causes.</p>
+      <a href="#">
+        <button class="btn-secondary">Contribute</button>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA Section ===== -->
+<section class="hero" style="margin-top:40px;">
+  <h1>Take Charge of Your Health Today</h1>
+  <p>Join MedLyfe and experience a smarter, faster way to manage healthcare.</p>
+  <a href="#">
+    <button class="btn-primary">Get Started</button>
+  </a>
+</section>
+
+{% endblock %}

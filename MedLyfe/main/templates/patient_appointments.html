@@ -1,0 +1,159 @@
+{% extends 'base.html' %}
+
+{% block title %}My Appointments | MedLyfe{% endblock %}
+
+{% block content %}
+<section class="appointment-list-section">
+    <div class="container">
+        <h2 class="section-title">My Appointments</h2>
+
+        {% if appointments %}
+            <div class="appointment-list-cards">
+                {% for appointment in appointments %}
+                    <div class="appointment-card">
+                        <div class="card-header">
+                            <h3 class="card-title">Appointment with Dr. {{ appointment.doctor.username }}</h3>
+                            <span class="appointment-status status-{{ appointment.status|lower }}">{{ appointment.status }}</span>
+                        </div>
+                        <div class="card-body">
+                            <p><strong>Date:</strong> {{ appointment.date|date:"F d, Y" }}</p>
+                            <p><strong>Time:</strong> {{ appointment.start_time|time:"h:i A" }} - {{ appointment.end_time|time:"h:i A" }}</p>
+                            <p><strong>Reason:</strong> {{ appointment.reason|default:"N/A" }}</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="{% url 'appointment_detail' appointment.pk %}" class="btn btn-info">View Details</a>
+                            {% if appointment.status == 'Pending' %}
+                                <form action="{% url 'cancel_appointment' appointment.pk %}" method="post" style="display: inline;" onsubmit="return confirm('Are you sure you want to cancel this appointment?');">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-danger">Cancel</button>
+                                </form>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="no-appointments-message">
+                <p>You don't have any appointments scheduled yet.</p>
+                <a href="{% url 'create_appointment' %}" class="btn btn-primary">Book a New Appointment</a>
+            </div>
+        {% endif %}
+    </div>
+</section>
+
+<style>
+    .appointment-list-section {
+        padding: 60px 0;
+        background-color: var(--light-grey-color);
+    }
+    .appointment-list-section .section-title {
+        margin-bottom: 40px;
+        color: var(--primary-color);
+        text-align: center;
+    }
+    .appointment-list-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+    }
+    .appointment-card {
+        background: var(--white-color);
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+    }
+    .appointment-card .card-header {
+        background-color: var(--primary-color);
+        color: var(--white-color);
+        padding: 15px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .appointment-card .card-title {
+        margin: 0;
+        font-size: 1.2rem;
+    }
+    .appointment-status {
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-weight: 600;
+        font-size: 0.85rem;
+    }
+    .status-pending { background-color: #ffc107; color: #343a40; } /* Yellow */
+    .status-approved { background-color: #28a745; color: var(--white-color); } /* Green */
+    .status-cancelled { background-color: #dc3545; color: var(--white-color); } /* Red */
+    .status-completed { background-color: #6c757d; color: var(--white-color); } /* Grey */
+
+    .appointment-card .card-body {
+        padding: 20px;
+        flex-grow: 1;
+    }
+    .appointment-card .card-body p {
+        margin-bottom: 8px;
+        color: var(--text-color);
+    }
+    .appointment-card .card-body strong {
+        color: var(--dark-blue-color);
+    }
+    .appointment-card .card-footer {
+        padding: 15px 20px;
+        background-color: var(--light-grey-color);
+        border-top: 1px solid var(--border-color);
+        display: flex;
+        gap: 10px;
+        justify-content: flex-end;
+    }
+    .btn {
+        padding: 8px 15px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-size: 0.9rem;
+        cursor: pointer;
+        border: none;
+        transition: background-color 0.3s ease;
+    }
+    .btn-info {
+        background-color: #17a2b8;
+        color: var(--white-color);
+    }
+    .btn-info:hover {
+        background-color: #138496;
+    }
+    .btn-danger {
+        background-color: #dc3545;
+        color: var(--white-color);
+    }
+    .btn-danger:hover {
+        background-color: #c82333;
+    }
+    .no-appointments-message {
+        background: var(--white-color);
+        padding: 40px;
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow);
+        text-align: center;
+        max-width: 600px;
+        margin: 40px auto;
+    }
+    .no-appointments-message p {
+        font-size: 1.1rem;
+        color: var(--text-color);
+        margin-bottom: 20px;
+    }
+    .no-appointments-message .btn-primary {
+        background-color: var(--primary-color);
+        color: var(--white-color);
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: background-color 0.3s ease;
+    }
+    .no-appointments-message .btn-primary:hover {
+        background-color: var(--dark-blue-color);
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}MedLyfe | Find Medicine & Compare Prices{% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/substitute1.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="medicine-hero">
+    <div class="container">
+        <h2>Find Medicines & Compare Prices</h2>
+        <form id="search-form" class="medicine-search-form" method="POST">
+            {% csrf_token %} 
+            <input 
+                type="search" 
+                id="search-input" 
+                class="medicine-search-input"
+                name="medicine_name"  
+                placeholder="Search for medicine name..."
+                value="{{ search_query|default:'' }}"
+            />
+            <i class="fa-solid fa-microphone medicine-mic-icon"></i>
+            <button type="submit" id="search-btn" class="medicine-search-btn">Search</button>
+        </form>
+    </div>
+</section>
+
+<section class="medicine-results-section container">
+    {% if results %}
+        <div class="medicine-card original">
+            <h3>Original Medicine</h3>
+            <div class="original-medicine-info">
+                <h4>{{ results.original.name }}</h4>
+                <p>{{ results.original.composition }}</p>
+                <p class="price">₹{{ results.original.price }} per strip</p>
+            </div>
+        </div>
+
+        <div class="medicine-card substitute-card">
+            <h3>Affordable Substitutes</h3>
+            <p class="subtext">Found {{ results.substitutes.all.count }} alternatives</p>
+
+            {% for sub in results.substitutes %}
+            <div class="sub-item">
+            <div class="sub-item-details">
+                    <h4>{{ sub.name }}</h4>
+                    <p>{{ sub.composition }}</p>
+                    <p class="price">₹{{ sub.price }} per strip</p>
+                </div>
+                <button class="add-cart-btn">Add to Cart</button>
+            </div>
+            {% endfor %}
+        </div>
+
+    {% elif error %}
+        <div class="medicine-card" style="text-align: center;">
+            <h2>{{ error }}</h2>
+            <p>Please check the spelling or try another search term.</p>
+        </div>
+
+    {% else %}
+        {% if all_medicines %}
+            <div class="all-medicines-list">
+                <h2>All Available Medicines</h2>
+                <div class="medicine-grid">
+                    {% for med in all_medicines %}
+                        <form method="POST" action="{% url 'medicines' %}" class="medicine-item-form">
+                            {% csrf_token %}
+                            <input type="hidden" name="medicine_name" value="{{ med.search_tag }}">
+                            <button type="submit" class="medicine-item-button">
+                                <h4>{{ med.name }}</h4>
+                                <p>{{ med.composition }}</p>
+                            </button>
+                        </form>
+                    {% endfor %}
+                </div>
+            </div>
+        {% else %}
+            <div class="medicine-card" style="text-align: center;">
+                <h2>No medicines found.</h2>
+                <p>Please ensure data is loaded or try again later.</p>
+            </div>
+        {% endif %}
+    {% endif %}
+</section>
+
+<button class="chat-btn"><i class="fa-solid fa-comments"></i></button>
+{% endblock %}

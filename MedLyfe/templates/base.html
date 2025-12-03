@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <title>{% block title %}MedLyfe | Your Health Simplified{% endblock %}</title>
+    
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <nav class="main-nav">
+                <a href="{% url 'index' %}" class="logo">
+                    MedLyfe
+                </a>
+                <div class="nav-links">
+                    <a href="{% url 'index' %}">Home</a>
+                    <a href="{% url 'medicines' %}">Medicines</a>
+                    <a href="{% url 'schemes' %}">Gov Scheme</a>
+                    <a href="{% url 'diagnose' %}">Diagnose</a>
+                    <a href="{% url 'appointment_list' %}">Appointment</a>
+                    <a href="{% url 'fundraise' %}">Fund Raiser</a>
+                    <a href="{% url 'contact' %}">Contact</a>
+                    {% if user.is_authenticated and user.profile.user_type == 'doctor' %}
+                        <a href="{% url 'create_prescription' %}">Create Prescription</a>
+                    {% endif %}
+                    {% if user.is_authenticated and user.profile.user_type == 'user' %}
+                        <a href="{% url 'health_tracker' %}">Health Tracker</a>
+                    {% endif %}
+                    {% if user.is_authenticated %}
+                        <a href="#"><i class="fas fa-user-circle"></i> Hi, {{ user.username }}</a>
+                        <a href="{% url 'users:logout' %}" class="btn">Logout</a>
+                    {% else %}
+                        <a href="{% url 'users:login' %}" class="btn">Login</a>
+                        <a href="{% url 'users:signup_choice' %}" class="btn">Sign Up</a>
+                    {% endif %}
+                </div>
+                <div class="hamburger">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                                    <a href="{% url 'about_us' %}">About Us</a>
+                                    <a href="{% url 'contact' %}">Contact</a>
+                                    <a href="{% url 'privacy_policy' %}">Privacy Policy</a>
+                                    <a href="{% url 'terms_of_service' %}">Terms of Service</a>                </div>
+                <p class="copyright">© {% now "Y" %} MedLyfe. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+    </script>
+
+    {% block scripts %}
+    {% endblock %}
+</body>
+</html>

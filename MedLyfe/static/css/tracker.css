@@ -1,0 +1,352 @@
+/* --- CSS Variables (if not already defined in style.css) --- */
+/* Assuming :root variables are defined in style.css and imported/cascaded */
+:root {
+    --primary-color: #007bff;
+    --primary-color-dark: #0056b3;
+    --secondary-color: #6c757d;
+    --light-gray-color: #f8f9fa;
+    --dark-color: #343a40;
+    --white-color: #fff;
+    --font-family: 'Poppins', sans-serif;
+    --border-radius: 8px;
+    --box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    --transition-speed: 0.3s;
+}
+
+/* ===== Tracker Section ===== */
+.tracker-section {
+    padding: 60px 20px;
+    min-height: calc(100vh - 80px); /* Adjust for header height */
+    background-color: var(--light-gray-color);
+}
+
+.data-section {
+    background: var(--white-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: 30px;
+    margin-bottom: 40px; /* Spacing between data sections */
+    margin-top: 30px; /* Spacing from previous section/element */
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--dark-color);
+}
+
+.section-description {
+    text-align: center;
+    max-width: 800px;
+    margin: -10px auto 40px;
+    color: var(--secondary-color);
+    font-size: 1.1rem;
+}
+
+.section-subtitle {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin-bottom: 25px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+}
+
+/* Specific styling for form groups in data sections */
+.data-section .form-group {
+    margin-bottom: 15px;
+}
+
+.data-section .form-group label {
+    font-weight: 600;
+    color: var(--dark-color);
+    margin-bottom: 5px;
+    display: block;
+}
+
+.data-section .form-control {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+/* Alert messages for goals */
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.alert-info {
+    color: #0c5460;
+    background-color: #d1ecf1;
+    border-color: #bee5eb;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    font-weight: 400;
+    color: var(--white-color);
+    text-align: center;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    padding: 0.75rem 1.25rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0.3rem;
+    transition: color var(--transition-speed) ease-in-out, background-color var(--transition-speed) ease-in-out, border-color var(--transition-speed) ease-in-out, box-shadow var(--transition-speed) ease-in-out;
+}
+
+.btn:hover {
+    color: var(--white-color);
+    background-color: var(--primary-color-dark);
+    border-color: var(--primary-color-dark);
+    text-decoration: none;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-color-dark);
+    border-color: var(--primary-color-dark);
+}
+
+.btn-secondary {
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+.btn-secondary:hover {
+    color: #fff;
+    background-color: #5a6268;
+    border-color: #545b62;
+}
+
+.btn-info {
+    color: #fff;
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+}
+
+.btn-info:hover {
+    color: #fff;
+    background-color: #138496;
+    border-color: #117a8b;
+}
+
+.btn-danger {
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+.btn-danger:hover {
+    color: #fff;
+    background-color: #c82333;
+    border-color: #bd2130;
+}
+
+.mb-4 {
+    margin-bottom: 1.5rem !important;
+}
+
+.mt-3 {
+    margin-top: 1rem !important;
+}
+
+.mt-4 {
+    margin-top: 1.5rem !important;
+}
+
+
+.prescription-card {
+    background: var(--white-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: 30px;
+    margin-bottom: 40px;
+}
+
+.prescription-header {
+    margin-bottom: 25px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+}
+
+.prescription-header h3 {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin-bottom: 5px;
+}
+
+.prescription-date {
+    font-size: 0.95rem;
+    color: var(--secondary-color);
+}
+
+.doctor-advice {
+    background-color: #e3f2fd; /* Light blue background */
+    border-left: 5px solid var(--primary-color);
+    padding: 15px 20px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    border-radius: 5px;
+    color: var(--dark-color);
+    font-style: italic;
+}
+
+.medicine-entry {
+    border: 1px solid #e0e0e0;
+    border-radius: var(--border-radius);
+    padding: 20px;
+    margin-bottom: 25px;
+    background-color: #fcfcfc;
+}
+
+.medicine-entry h4 {
+    font-size: 1.5rem;
+    color: var(--dark-color);
+    margin-bottom: 10px;
+}
+
+.medicine-entry p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 8px;
+}
+
+.dosage-log {
+    margin-top: 20px;
+    border-top: 1px solid #f0f0f0;
+    padding-top: 15px;
+}
+
+.log-header {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+    color: var(--dark-color);
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px dashed #e0e0e0;
+}
+
+.log-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px dotted #f5f5f5;
+}
+
+.log-row:last-child {
+    border-bottom: none;
+}
+
+.log-row span {
+    font-size: 0.9rem;
+    color: #444;
+}
+
+.log-row input[type="checkbox"] {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--primary-color);
+    border-radius: 4px;
+    cursor: pointer;
+    position: relative;
+    outline: none;
+    transition: background-color var(--transition-speed), border-color var(--transition-speed);
+}
+
+.log-row input[type="checkbox"]:checked {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.log-row input[type="checkbox"]:checked::after {
+    content: '\2713'; /* Checkmark character */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--white-color);
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.log-row input[type="checkbox"]:focus {
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+.chart-container {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+    text-align: center;
+}
+
+.chart-container h4 {
+    font-size: 1.3rem;
+    color: var(--dark-color);
+    margin-bottom: 20px;
+}
+
+.no-prescriptions {
+    text-align: center;
+    padding: 50px;
+    background: var(--white-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    color: var(--secondary-color);
+    font-size: 1.2rem;
+}
+
+/* --- Responsive adjustments --- */
+@media (max-width: 768px) {
+    .tracker-section {
+        padding: 30px 15px;
+    }
+    .section-title {
+        font-size: 2rem;
+    }
+    .section-description {
+        font-size: 1rem;
+    }
+    .prescription-card {
+        padding: 20px;
+    }
+    .prescription-header h3 {
+        font-size: 1.5rem;
+    }
+    .medicine-entry h4 {
+        font-size: 1.3rem;
+    }
+    .log-header, .log-row {
+        flex-direction: row;
+        align-items: center;
+    }
+    .log-header span, .log-row span {
+        flex: 1;
+        text-align: left;
+    }
+    .log-row input[type="checkbox"] {
+        margin-left: auto; /* Push checkbox to the right */
+    }
+}

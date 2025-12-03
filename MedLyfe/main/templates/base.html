@@ -1,0 +1,99 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}MedLyfe | Your Health Simplified{% endblock %}</title>
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <!-- Font Awesome -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  />
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  {% block extra_css %}{% endblock %}
+</head>
+
+<body>
+  <!-- ====== HEADER ====== -->
+  <header class="main-header">
+    <div class="container main-nav">
+      <div class="logo">
+        <img src="{% static ' C:\Django4\MedLyfe\main\static\images\WhatsApp Image 2025-12-02 at 22.54.43.jpeg' %}" alt="MedLyfe Logo" class="logo-img" />
+        MedLyfe
+      </div>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'substitute' %}">Medicines</a>
+        <a href="#">Gov Scheme</a>
+        <a href="#">Diagnose</a>
+        <a href="#">Appointment</a>
+        <a href="#">Fund Raiser</a>
+        <a href="#">Contact</a>
+        <button class="nav-btn btn">Login</button>
+      </nav>
+
+      <div class="hamburger" id="hamburger">
+        <i class="fas fa-bars"></i>
+      </div>
+    </div>
+  </header>
+
+  <!-- ====== MAIN CONTENT ====== -->
+  <main>
+    {% block content %}
+    <!-- Page-specific content will appear here -->
+    {% endblock %}
+  </main>
+
+  <!-- ====== FOOTER ====== -->
+  <footer class="main-footer">
+    <div class="container footer-content">
+      <div class="footer-links">
+        <a href="#">About Us</a>
+        <a href="#">Contact</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms & Conditions</a>
+      </div>
+      <p class="copyright">&copy; 2025 MedLyfe | Empowering Digital Healthcare</p>
+    </div>
+  </footer>
+
+  <!-- ====== FLOATING CHAT BUTTON ====== -->
+  <button class="chat-btn"><i class="fa-solid fa-comments"></i></button>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const hamburger = document.getElementById('hamburger');
+      const navLinks = document.getElementById('navLinks');
+
+      if (hamburger && navLinks) {
+        hamburger.addEventListener('click', function() {
+          navLinks.classList.toggle('active');
+          hamburger.classList.toggle('active'); // Optional: Add active class to hamburger for styling
+        });
+
+        // Close nav when a link is clicked (optional, but good for UX)
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                hamburger.classList.remove('active');
+            });
+        });
+      }
+    });
+  </script>
+
+  {% block extra_js %}{% endblock %}
+</body>
+</html>
+

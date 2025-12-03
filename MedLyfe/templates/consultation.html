@@ -1,0 +1,375 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Virtual Consultation | MedLyfe{% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/virtual1.css' %}">
+  <style>
+    .doctor-icon-placeholder {
+        width: 100px; /* Same as image size */
+        height: 100px; /* Same as image size */
+        border-radius: 50%;
+        background-color: var(--light-grey-color); /* Or any suitable background */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto 15px auto;
+        font-size: 3em; /* Adjust icon size */
+        color: var(--primary-color); /* Icon color */
+        border: 2px solid var(--primary-color);
+    }
+
+    /* Modal Styles */
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 10000; /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        justify-content: center;
+        align-items: center;
+        padding-top: 50px; /* To push content down a bit */
+    }
+
+    .modal-content {
+        background-color: #fefefe;
+        margin: auto;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        width: 90%;
+        max-width: 500px;
+        position: relative;
+        animation-name: animatetop;
+        animation-duration: 0.4s
+    }
+
+    /* Add Animation */
+    @keyframes animatetop {
+        from {top: -300px; opacity: 0}
+        to {top: 0; opacity: 1}
+    }
+
+    .close-button {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        position: absolute;
+        top: 10px;
+        right: 15px;
+    }
+
+    .close-button:hover,
+    .close-button:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .modal-header {
+        text-align: center;
+        margin-bottom: 20px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #eee;
+    }
+
+    .doctor-icon-placeholder-modal {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background-color: var(--light-gray-color);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto 10px auto;
+        font-size: 2.5em;
+        color: var(--primary-color);
+        border: 2px solid var(--primary-color);
+    }
+
+    .modal-header h3 {
+        margin: 0;
+        font-size: 1.8rem;
+        color: var(--dark-color);
+    }
+
+    .modal-specialization {
+        color: var(--secondary-color);
+        font-size: 1.1rem;
+    }
+
+    .modal-body {
+        text-align: left;
+        margin-bottom: 20px;
+    }
+
+    .modal-body h4 {
+        color: var(--primary-color);
+        margin-bottom: 10px;
+        font-size: 1.2rem;
+    }
+
+    .modal-body p {
+        color: var(--dark-color);
+        line-height: 1.6;
+        margin-bottom: 15px;
+    }
+
+    .modal-body .rating {
+        color: #ffc107; /* Star color */
+        font-size: 1.1rem;
+    }
+
+    .modal-footer {
+        text-align: center;
+        padding-top: 15px;
+        border-top: 1px solid #eee;
+    }
+  </style>
+{% endblock %}
+
+{% block content %}
+  <section class="consultation-hero">
+    <div class="container">
+        <h1>Book a Video Consultation</h1>
+        <p>Connect with certified doctors instantly from the comfort of your home. Get expert medical advice and care.</p>
+        <a href="#doctors" class="btn">Find a Doctor</a>
+    </div>
+  </section>
+
+  <section class="doctors-section" id="doctors">
+    <div class="container">
+        <h2>Available Doctors</h2>
+
+        <div class="doctor-controls">
+            <div class="doctor-search-bar">
+                <input type="text" id="doctorSearch" placeholder="Search doctors by name..." onkeyup="filterDoctors()">
+                <i class="fas fa-search"></i>
+            </div>
+            <div class="doctor-filter-buttons">
+                <button class="btn active" data-specialization="all" onclick="filterDoctors(this)">All</button>
+                <button class="btn" data-specialization="General Physician" onclick="filterDoctors(this)">General Physician</button>
+                <button class="btn" data-specialization="Dermatologist" onclick="filterDoctors(this)">Dermatologist</button>
+                <button class="btn" data-specialization="Cardiologist" onclick="filterDoctors(this)">Cardiologist</button>
+            </div>
+        </div>
+
+        <div class="doctors-grid" id="doctorsGrid">
+        
+            <div class="doctor-card" data-name="Dr. Abhinav" data-specialization="General Physician" data-rating="4.5" data-about="Experienced general practitioner with a focus on family health and preventive care.">
+                <div class="doctor-icon-placeholder"><i class="fas fa-user-doctor"></i></div>
+                <h3>Dr. Abhinav</h3>
+                <p class="specialization">General Physician</p>
+                <div class="rating">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i> 4.5
+                </div>
+                <p class="about">Experienced general practitioner with a focus on family health and preventive care.</p>
+                <div class="btn-group">
+                    <a href="{% url 'create_room' %}" class="btn">Book Appointment</a>
+                    <button class="btn btn-secondary" onclick="openDoctorProfileModal(this)">View Profile</button>
+                </div>
+            </div>
+
+            <div class="doctor-card" data-name="Dr. Atul Kumar" data-specialization="Dermatologist" data-rating="5.0" data-about="Leading dermatologist specializing in skin conditions, cosmetic procedures, and hair loss.">
+                <div class="doctor-icon-placeholder"><i class="fas fa-user-doctor"></i></div>
+                <h3>Dr. Atul Kumar</h3>
+                <p class="specialization">Dermatologist</p>
+                <div class="rating">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> 5.0
+                </div>
+                <p class="about">Leading dermatologist specializing in skin conditions, cosmetic procedures, and hair loss.</p>
+                <div class="btn-group">
+                    <a href="{% url 'create_room' %}" class="btn">Book Appointment</a>
+                    <button class="btn btn-secondary" onclick="openDoctorProfileModal(this)">View Profile</button>
+                </div>
+            </div>
+
+            <div class="doctor-card" data-name="Dr. Sandeep" data-specialization="Cardiologist" data-rating="4.0" data-about="Renowned cardiologist with expertise in heart disease prevention and treatment.">
+                <div class="doctor-icon-placeholder"><i class="fas fa-user-doctor"></i></div>
+                <h3>Dr. Sandeep</h3>
+                <p class="specialization">Cardiologist</p>
+                <div class="rating">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i> 4.0
+                </div>
+                <p class="about">Renowned cardiologist with expertise in heart disease prevention and treatment.</p>
+                <div class="btn-group">
+                    <a href="{% url 'create_room' %}" class="btn">Book Appointment</a>
+                    <button class="btn btn-secondary" onclick="openDoctorProfileModal(this)">View Profile</button>
+                </div>
+            </div>
+            
+            <div class="doctor-card" data-name="Dr. Satyam" data-specialization="General Physician" data-rating="4.0" data-about="Dedicated general physician providing comprehensive care to patients of all ages.">
+                <div class="doctor-icon-placeholder"><i class="fas fa-user-doctor"></i></div>
+                <h3>Dr. Satyam</h3>
+                <p class="specialization">General Physician</p>
+                <div class="rating">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i> 4.0
+                </div>
+                <p class="about">Dedicated general physician providing comprehensive care to patients of all ages.</p>
+                <div class="btn-group">
+                    <a href="{% url 'create_room' %}" class="btn">Book Appointment</a>
+                    <button class="btn btn-secondary" onclick="openDoctorProfileModal(this)">View Profile</button>
+                </div>
+            </div>
+
+            <div class="doctor-card" data-name="Dr. Sharukh" data-specialization="Cardiologist" data-rating="3.5" data-about="Expert cardiologist with a focus on advanced cardiac treatments and patient education.">
+                <div class="doctor-icon-placeholder"><i class="fas fa-user-doctor"></i></div>
+                <h3>Dr. Sharukh</h3>
+                <p class="specialization">Cardiologist</p>
+                <div class="rating">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i> 3.5
+                </div>
+                <p class="about">Expert cardiologist with a focus on advanced cardiac treatments and patient education.</p>
+                <div class="btn-group">
+                    <a href="{% url 'create_room' %}" class="btn">Book Appointment</a>
+                    <button class="btn btn-secondary" onclick="openDoctorProfileModal(this)">View Profile</button>
+                </div>
+            </div>
+
+            <div class="doctor-card" data-name="Dr. Rohan" data-specialization="Dermatologist" data-rating="5.0" data-about="Board-certified dermatologist experienced in all aspects of skin health and cosmetic dermatology.">
+                <div class="doctor-icon-placeholder"><i class="fas fa-user-doctor"></i></div>
+                <h3>Dr. Rohan</h3>
+                <p class="specialization">Dermatologist</p>
+                <div class="rating">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> 5.0
+                </div>
+                <p class="about">Board-certified dermatologist experienced in all aspects of skin health and cosmetic dermatology.</p>
+                <div class="btn-group">
+                    <a href="{% url 'create_room' %}" class="btn">Book Appointment</a>
+                    <button class="btn btn-secondary" onclick="openDoctorProfileModal(this)">View Profile</button>
+                </div>
+            </div>
+
+            <div class="doctor-card" data-name="Dr. Vikash" data-specialization="General Physician" data-rating="3.5" data-about="Compassionate general practitioner committed to providing personalized and effective medical care.">
+                <div class="doctor-icon-placeholder"><i class="fas fa-user-doctor"></i></div>
+                <h3>Dr. Vikash</h3>
+                <p class="specialization">General Physician</p>
+                <div class="rating">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i> 3.5
+                </div>
+                <p class="about">Compassionate general practitioner committed to providing personalized and effective medical care.</p>
+                <div class="btn-group">
+                    <a href="{% url 'create_room' %}" class="btn">Book Appointment</a>
+                    <button class="btn btn-secondary" onclick="openDoctorProfileModal(this)">View Profile</button>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+  </section>
+
+  <!-- Doctor Profile Modal -->
+  <div id="doctorProfileModal" class="modal">
+    <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <div class="modal-header">
+            <div class="doctor-icon-placeholder-modal"><i class="fas fa-user-doctor"></i></div>
+            <h3 id="modalDoctorName"></h3>
+            <p class="modal-specialization" id="modalDoctorSpecialization"></p>
+        </div>
+        <div class="modal-body">
+            <h4>About:</h4>
+            <p id="modalDoctorAbout"></p>
+            <h4>Rating:</h4>
+            <div class="rating" id="modalDoctorRating"></div>
+        </div>
+        <div class="modal-footer">
+            <a href="{% url 'create_room' %}" class="btn">Book Appointment</a>
+        </div>
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+    function filterDoctors(filterButton = null) {
+        const searchValue = document.getElementById('doctorSearch').value.toLowerCase();
+        const doctorsGrid = document.getElementById('doctorsGrid');
+        const doctorCards = doctorsGrid.getElementsByClassName('doctor-card');
+
+        let selectedSpecialization = 'all';
+        if (filterButton) {
+            // Remove active class from all filter buttons
+            document.querySelectorAll('.doctor-filter-buttons .btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            // Add active class to the clicked button
+            filterButton.classList.add('active');
+            selectedSpecialization = filterButton.dataset.specialization;
+        } else {
+            // If no button is clicked, find the currently active one
+            const activeButton = document.querySelector('.doctor-filter-buttons .btn.active');
+            if (activeButton) {
+                selectedSpecialization = activeButton.dataset.specialization;
+            }
+        }
+
+        for (let i = 0; i < doctorCards.length; i++) {
+            const card = doctorCards[i];
+            const doctorName = card.dataset.name.toLowerCase();
+            const doctorSpecialization = card.dataset.specialization;
+
+            const matchesSearch = doctorName.includes(searchValue);
+            const matchesSpecialization = (selectedSpecialization === 'all' || doctorSpecialization === selectedSpecialization);
+
+            if (matchesSearch && matchesSpecialization) {
+                card.style.display = '';
+            } else {
+                card.style.display = 'none';
+            }
+        }
+    }
+
+    // Modal JavaScript
+    const doctorProfileModal = document.getElementById('doctorProfileModal');
+    const closeButton = document.querySelector('.close-button');
+
+    function openDoctorProfileModal(button) {
+        const doctorCard = button.closest('.doctor-card');
+        
+        const name = doctorCard.dataset.name;
+        const specialization = doctorCard.dataset.specialization;
+        const about = doctorCard.dataset.about;
+        const rating = parseFloat(doctorCard.dataset.rating);
+
+        document.getElementById('modalDoctorName').textContent = name;
+        document.getElementById('modalDoctorSpecialization').textContent = specialization;
+        document.getElementById('modalDoctorAbout').textContent = about;
+        
+        const modalRatingDiv = document.getElementById('modalDoctorRating');
+        modalRatingDiv.innerHTML = ''; // Clear previous stars
+        for (let i = 0; i < 5; i++) {
+            const star = document.createElement('i');
+            if (rating >= i + 1) {
+                star.className = 'fas fa-star';
+            } else if (rating > i) {
+                star.className = 'fas fa-star-half-alt';
+            } else {
+                star.className = 'far fa-star';
+            }
+            modalRatingDiv.appendChild(star);
+        }
+        modalRatingDiv.appendChild(document.createTextNode(` ${rating}`));
+
+
+        doctorProfileModal.style.display = 'block';
+    }
+
+    closeButton.onclick = function() {
+        doctorProfileModal.style.display = 'none';
+    }
+
+    window.onclick = function(event) {
+        if (event.target == doctorProfileModal) {
+            doctorProfileModal.style.display = 'none';
+        }
+    }
+</script>
+{% endblock %}

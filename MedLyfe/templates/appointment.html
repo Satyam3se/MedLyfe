@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block title %}Appointments | MedLyfe{% endblock %}
+
+{% block content %}
+<section class="appointment-landing">
+    <div class="container">
+        <h2 class="section-title">Manage Your Appointments</h2>
+        <div class="appointment-options">
+            {% if user.is_authenticated %}
+                <div class="option-card">
+                    <h3>View Your Appointments</h3>
+                    <p>See all your upcoming and past appointments.</p>
+                    <a href="{% url 'appointment_list' %}" class="btn btn-primary">Go to Appointments</a>
+                </div>
+                <div class="option-card">
+                    <h3>Book a New Appointment</h3>
+                    <p>Schedule a new consultation with one of our doctors.</p>
+                    <a href="{% url 'create_appointment' %}" class="btn btn-primary">Book Now</a>
+                </div>
+            {% else %}
+                <div class="option-card">
+                    <h3>Login to Manage Appointments</h3>
+                    <p>Please log in to view or book appointments.</p>
+                    <a href="{% url 'users:login' %}" class="btn btn-primary">Login</a>
+                </div>
+                <div class="option-card">
+                    <h3>New User?</h3>
+                    <p>Create an account to start managing your health with MedLyfe.</p>
+                    <a href="{% url 'users:signup_choice' %}" class="btn btn-primary">Sign Up</a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<style>
+    .appointment-landing {
+        padding: 60px 0;
+        background-color: var(--light-grey-color);
+        text-align: center;
+    }
+    .appointment-landing .section-title {
+        margin-bottom: 40px;
+        color: var(--primary-color);
+    }
+    .appointment-options {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        flex-wrap: wrap;
+    }
+    .option-card {
+        background: var(--white-color);
+        padding: 30px;
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow);
+        width: 100%;
+        max-width: 400px;
+        text-align: center;
+        transition: transform 0.3s ease;
+    }
+    .option-card:hover {
+        transform: translateY(-5px);
+    }
+    .option-card h3 {
+        color: var(--dark-blue-color);
+        margin-bottom: 15px;
+    }
+    .option-card p {
+        color: var(--text-color);
+        margin-bottom: 25px;
+        line-height: 1.6;
+    }
+    .option-card .btn-primary {
+        background-color: var(--primary-color);
+        color: var(--white-color);
+        border: none;
+        padding: 10px 25px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: background-color 0.3s ease;
+    }
+    .option-card .btn-primary:hover {
+        background-color: var(--dark-blue-color);
+    }
+</style>
+{% endblock %}

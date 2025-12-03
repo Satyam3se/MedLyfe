@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}MedLyfe | Find Medicine & Compare Prices{% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/substitute1.css' %}">
+{% endblock %}
+
+{% block content %}
+  <main>
+    <section class="hero">
+      <h2>Find Medicines & Compare Prices</h2>
+      
+      <form id="search-form" class="search-box" method="POST">
+        {% csrf_token %} <input 
+          type="search" 
+          id="search-input" 
+          name="medicine_name"  placeholder="Search for medicine name..."
+          value="{{ search_query|default:'' }}"
+        />
+        <i class="fa-solid fa-microphone mic-icon"></i>
+        <button type="submit" id="search-btn">Search</button>
+      </form>
+    </section>
+
+    <section class="medicine-section">
+
+      {% if results %}
+        
+        <div class="medicine-card original">
+          <h3>Original Medicine</h3>
+          <div class="medicine-info">
+            <img src="{% static 'images/placeholder.png' %}" alt="{{ results.original.name }}" />
+            <h4>{{ results.original.name }}</h4>
+            <p>{{ results.original.composition }}</p>
+            <p class="price">₹{{ results.original.price }} per strip</p>
+          </div>
+        </div>
+
+        <div class="medicine-card substitute">
+          <h3>Affordable Substitutes</h3>
+          <p class="subtext">Found {{ results.substitutes.all.count }} alternatives</p>
+
+          {% for sub in results.substitutes %}
+          <div class="sub-card">
+            <img src="{% static 'images/placeholder.png' %}" alt="{{ sub.name }}" />
+            <div class="details">
+              <h4>{{ sub.name }}</h4>
+              <p>{{ sub.composition }}</p>
+              <p class="price">₹{{ sub.price }} per strip</p>
+            </div>
+            <button class="add-cart">Add to Cart</button>
+          </div>
+          {% endfor %}
+          
+        </div>
+
+      {% elif error %}
+        <div style="text-align: center; width: 100%;">
+          <h2>{{ error }}</h2>
+          <p>Please check the spelling or try another search term.</p>
+        </div>
+
+      {% else %}
+        <div style="text-align: center; width: 100%;">
+          <h2>Please search for a medicine</h2>
+          <p>Use the search bar above to find an original medicine and its substitutes.</p>
+        </div>
+      {% endif %}
+
+    </section>
+  </main>
+  
+  <button class="chat-btn"><i class="fa-solid fa-comments"></i></button>
+{% endblock %}

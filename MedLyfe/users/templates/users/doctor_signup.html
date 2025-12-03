@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Doctor Signup | MedLyfe{% endblock %}
+
+{% block extra_css %}
+<style>
+    .signup-section {
+        padding: 60px 0;
+        background-color: var(--light-gray-color);
+        min-height: calc(100vh - 180px); /* Adjust based on header/footer height */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .signup-card {
+        background: var(--white-color);
+        padding: 40px;
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow);
+        width: 100%;
+        max-width: 550px;
+        margin: auto;
+        text-align: center;
+    }
+    .signup-card .icon {
+        font-size: 3.5rem;
+        color: #28a745; /* Doctor-specific color */
+        margin-bottom: 20px;
+    }
+    .signup-card h2 {
+        font-size: 2.2rem;
+        color: var(--dark-color);
+        margin-bottom: 15px;
+    }
+    .signup-card p.description {
+        font-size: 1rem;
+        color: var(--secondary-color);
+        margin-bottom: 30px;
+    }
+    .form-group {
+        margin-bottom: 20px;
+        text-align: left;
+    }
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: var(--dark-color);
+    }
+    .form-group input[type="text"],
+    .form-group input[type="email"],
+    .form-group input[type="password"] {
+        width: 100%;
+        padding: 12px 15px;
+        border: 1px solid var(--border-color);
+        border-radius: 5px;
+        font-size: 1rem;
+        color: var(--dark-color);
+    }
+    .form-group input:focus {
+        border-color: #28a745; /* Focus color for doctor forms */
+        box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+        outline: none;
+    }
+    .form-errors, .non-field-errors {
+        color: #dc3545;
+        background-color: #f8d7da;
+        border: 1px solid #f5c6cb;
+        border-radius: 5px;
+        padding: 10px 15px;
+        margin-top: 10px;
+        font-size: 0.9rem;
+        text-align: left;
+    }
+    .signup-card .btn {
+        width: 100%;
+        padding: 12px;
+        background-color: #28a745; /* Doctor-specific button color */
+        color: var(--white-color);
+        border: none;
+        border-radius: 50px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    .signup-card .btn:hover {
+        background-color: #218838;
+    }
+    .login-link {
+        margin-top: 25px;
+        font-size: 0.95rem;
+        color: var(--secondary-color);
+    }
+    .login-link a {
+        color: #28a745;
+        font-weight: 600;
+    }
+    .login-link a:hover {
+        text-decoration: underline;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="signup-section">
+    <div class="container">
+        <div class="signup-card">
+            <div class="icon"><i class="fas fa-user-md"></i></div>
+            <h2>Sign Up as a Doctor</h2>
+            <p class="description">Create your account to start managing patients and prescriptions.</p>
+            
+            <form method="post" novalidate>
+                {% csrf_token %}
+
+                {% if form.non_field_errors %}
+                    <div class="non-field-errors">
+                        {% for error in form.non_field_errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                {% for field in form %}
+                    <div class="form-group">
+                        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                        {{ field }}
+                        {% if field.help_text %}
+                            <small class="form-text text-muted">{{ field.help_text }}</small>
+                        {% endif %}
+                        {% for error in field.errors %}
+                            <div class="form-errors">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+
+                <button type="submit" class="btn">Register</button>
+            </form>
+
+            <p class="login-link">Already have an account? <a href="{% url 'users:login' %}">Login here</a></p>
+        </div>
+    </div>
+</section>
+{% endblock %}

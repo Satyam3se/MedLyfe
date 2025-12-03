@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Create Prescription | MedLyfe{% endblock %}
+
+{% block extra_css %}
+<style>
+    .form-container {
+        background: var(--white-color);
+        padding: 40px;
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow);
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+    .form-container h2 {
+        text-align: center;
+        margin-bottom: 30px;
+        color: var(--dark-color);
+    }
+    .form-group {
+        margin-bottom: 20px;
+    }
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+        color: #555;
+    }
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: var(--border-radius);
+        font-family: inherit;
+        font-size: 1rem;
+    }
+    .form-control:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+    }
+    textarea.form-control {
+        resize: vertical;
+    }
+    .formset-row {
+        background-color: var(--light-gray-color);
+        padding: 20px;
+        border-radius: var(--border-radius);
+        margin-bottom: 15px;
+        border: 1px solid #eee;
+    }
+    .formset-row h4 {
+        margin-top: 0;
+        margin-bottom: 15px;
+        color: var(--primary-color);
+    }
+    .formset-row .delete-checkbox {
+        margin-top: 10px;
+        text-align: right;
+    }
+    .formset-row .delete-checkbox label {
+        display: inline-block;
+        margin-left: 5px;
+    }
+    .submit-button-container {
+        text-align: center;
+        margin-top: 30px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<section>
+    <div class="container">
+        <div class="form-container">
+            <h2>Create New Prescription</h2>
+            <form method="post">
+                {% csrf_token %}
+
+                <h3>Prescription Details</h3>
+                {% for field in prescription_form %}
+                    <div class="form-group">
+                        {{ field.label_tag }}
+                        {{ field }}
+                        {% if field.help_text %}
+                            <small class="form-text text-muted">{{ field.help_text }}</small>
+                        {% endif %}
+                        {% for error in field.errors %}
+                            <p class="error-message">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+                {% if prescription_form.non_field_errors %}
+                    <div class="form-errors">
+                        {% for error in prescription_form.non_field_errors %}
+                            <p class="error-message">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                <h3>Medicines Prescribed</h3>
+                {{ formset.management_form }}
+                {% for form in formset %}
+                    <div class="formset-row">
+                        <h4>Medicine {{ forloop.counter }}</h4>
+                        {% for field in form %}
+                            <div class="form-group">
+                                {{ field.label_tag }}
+                                {{ field }}
+                                {% for error in field.errors %}
+                                    <p class="error-message">{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endfor %}
+                        {% if form.non_field_errors %}
+                            <div class="form-errors">
+                                {% for error in form.non_field_errors %}
+                                    <p class="error-message">{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+
+                <div class="submit-button-container">
+                    <button type="submit" class="btn">Generate Prescription</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+{{ formset.media }}
+{% endblock %}

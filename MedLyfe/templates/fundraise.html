@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}MedLyfe - Fundraise{% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/fundraise.css' %}">
+  <style>
+    .profile-icon-placeholder {
+        width: 80px; /* Adjust size as needed */
+        height: 80px; /* Adjust size as needed */
+        border-radius: 50%;
+        background-color: var(--light-grey-color); /* Use a suitable color */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto 10px auto; /* Center and add some margin */
+        font-size: 3em; /* Adjust icon size */
+        color: var(--primary-color); /* Icon color */
+        border: 2px solid var(--primary-color); /* Optional border */
+    }
+  </style>
+{% endblock %}
+
+{% block content %}
+<div class="fundraise-layout container">
+  <aside class="sidebar">
+    <div class="brand">
+      <h2>MedLyfe</h2>
+    </div>
+
+    <div class="profile">
+      <div class="profile-icon-placeholder"><i class="fas fa-user-circle"></i></div>
+      {% if user.is_authenticated %}
+        <h3>{{ user.username }}</h3>
+      {% else %}
+        <h3>Guest User</h3>
+      {% endif %}
+      <a href="#" class="view-profile">View Profile</a>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a href="#" class="active"><i class="fa-solid fa-house"></i> Dashboard</a>
+
+
+      <a href="{% url 'health_tracker' %}"><i class="fa-solid fa-heart-pulse"></i> My Health Tracker</a>
+
+      <a href="{% url 'schemes' %}"><i class="fa-solid fa-landmark"></i> Government Schemes</a>
+
+      {% if user.is_authenticated %}
+        <a href="{% url 'users:logout' %}"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+      {% endif %}
+    </nav>
+  </aside>
+
+  <main class="main-content">
+    
+    
+        <div class="external-fundraising-platforms">
+          <h2>External Fundraising Platforms</h2>
+          <div class="platform-grid">
+            <div class="platform-card">
+              <h3>GoFundMe</h3>
+              <p>Widely recognized for personal causes, medical expenses, and emergencies.</p>
+              <a href="https://www.gofundme.com/" target="_blank" class="btn-external">Visit GoFundMe</a>
+            </div>
+            <div class="platform-card">
+              <h3>GiveForward</h3>
+              <p>Specializes in crowdfunding for medical bills and health-related expenses.</p>
+              <a href="https://www.giveforward.com/" target="_blank" class="btn-external">Visit GiveForward</a>
+            </div>
+            <div class="platform-card">
+              <h3>Fundly</h3>
+              <p>For various causes, including personal fundraising, non-profits, and events.</p>
+              <a href="https://www.fundly.com/" target="_blank" class="btn-external">Visit Fundly</a>
+            </div>
+            <div class="platform-card">
+              <h3>Kiva</h3>
+              <p>Focuses on microloans for entrepreneurs and students in underserved communities.</p>
+              <a href="https://www.kiva.org/" target="_blank" class="btn-external">Visit Kiva</a>
+            </div>
+            <div class="platform-card">
+              <h3>Kickstarter</h3>
+              <p>Popular for creative projects, technology, and independent ventures seeking funding.</p>
+              <a href="https://www.kickstarter.com/" target="_blank" class="btn-external">Visit Kickstarter</a>
+            </div>
+            <div class="platform-card">
+              <h3>Indiegogo</h3>
+              <p>Offers flexible funding options for various campaigns, including tech, creative, and community projects.</p>
+              <a href="https://www.indiegogo.com/" target="_blank" class="btn-external">Visit Indiegogo</a>
+            </div>
+            <div class="platform-card">
+              <h3>Patreon</h3>
+              <p>Enables creators to get ongoing support from their fans or patrons for their work.</p>
+              <a href="https://www.patreon.com/" target="_blank" class="btn-external">Visit Patreon</a>
+            </div>
+            <div class="platform-card">
+              <h3>JustGiving</h3>
+              <p>A leading online fundraising platform for charities and individuals in the UK and internationally.</p>
+              <a href="https://www.justgiving.com/" target="_blank" class="btn-external">Visit JustGiving</a>
+            </div>
+            <div class="platform-card">
+              <h3>Virgin Money Giving</h3>
+              <p>Another popular platform for charity fundraising, especially well-known in the UK.</p>
+              <a href="https://uk.virginmoneygiving.com/" target="_blank" class="btn-external">Visit Virgin Money Giving</a>
+            </div>
+            <div class="platform-card">
+              <h3>Classy</h3>
+              <p>A comprehensive platform for non-profits to manage fundraising campaigns, events, and donations.</p>
+              <a href="https://www.classy.org/" target="_blank" class="btn-external">Visit Classy</a>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    {% endblock %}

@@ -1,0 +1,42 @@
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Django
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+media/
+
+# Python
+*.py[cod]
+*$py.class
+*.so
+.Python
+__pycache__/
+.pytest_cache/
+.mypy_cache/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Node
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
